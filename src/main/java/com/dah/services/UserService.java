@@ -49,7 +49,7 @@ public class UserService {
 
     // find index of user by username
     // return -1 if not found
-    public int find_user_index(String username) {
+    public int findUserIndex(String username) {
 
         boolean found = false;
 
@@ -62,6 +62,10 @@ public class UserService {
             } else {
                 pointer += 1;
             }
+        }
+
+        if (!found) {
+            pointer = -1;
         }
 
         return pointer;

@@ -28,9 +28,9 @@ public class UserServiceTest {
     public void loadUserSucessTest() {
 
         try {
-            user_service.loadUsers("src/test/java/com/dah/test_data/users.csv");
+            user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         assertTrue(1 == user_service.getUserNum());
@@ -47,6 +47,59 @@ public class UserServiceTest {
         } catch (Exception e) {
             assertTrue(true);
         }
+
+    }
+
+    @Test
+    public void findUserIndexSucessTest() {
+
+        try {
+            user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String username_demanded = "mocko";
+
+        int expected_index = 0;
+        
+        int function_result = user_service.findUserIndex(username_demanded);
+
+        assertEquals(expected_index, function_result);
+
+    }
+
+
+    @Test
+    public void findUserIndexWrongEntryTest() {
+
+        try {
+            user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String username_demanded = "qwer";
+
+        int expected_index = -1;
+        
+        int function_result = user_service.findUserIndex(username_demanded);
+
+        assertEquals(expected_index, function_result);
+
+    }
+
+
+    @Test
+    public void findUserIndexEmptyListTest() {
+
+        String username_demanded = "qwer";
+
+        int expected_index = -1;
+        
+        int function_result = user_service.findUserIndex(username_demanded);
+
+        assertEquals(expected_index, function_result);
 
     }
 
