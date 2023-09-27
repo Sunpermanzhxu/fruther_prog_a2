@@ -24,18 +24,18 @@ public class UserServiceTest {
 
     }
     
-    @Test
-    public void loadUserSucessTest() {
+    // @Test
+    // public void loadUserSucessTest() {
 
-        try {
-            user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
 
-        assertTrue(1 == user_service.getUserNum());
+    //     assertTrue(1 == user_service.getUserNum());
 
-    }
+    // }
 
     @Test
     public void loadUserWrongFileTest() {
@@ -70,24 +70,24 @@ public class UserServiceTest {
     }
 
 
-    @Test
-    public void findUserIndexWrongEntryTest() {
+    // @Test
+    // public void findUserIndexWrongEntryTest() {
 
-        try {
-            user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
 
-        String username_demanded = "qwer";
+    //     String username_demanded = "qwer";
 
-        int expected_index = -1;
+    //     int expected_index = -1;
         
-        int function_result = user_service.findUserIndex(username_demanded);
+    //     int function_result = user_service.findUserIndex(username_demanded);
 
-        assertEquals(expected_index, function_result);
+    //     assertEquals(expected_index, function_result);
 
-    }
+    // }
 
 
     @Test

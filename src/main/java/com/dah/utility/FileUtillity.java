@@ -8,7 +8,7 @@ public class FileUtillity {
 
     // public static final String TEST_USER_FILE_PATH = "src/test/java/com/dah/test_data/users.csv";
 
-    public static final String DB_PATH = "/resources/dah.db";
+    public static final String DB_PATH = "resources/dah.db";
 
 
     // querries

@@ -6,18 +6,25 @@ import java.sql.SQLException;
 
 import com.dah.utility.FileUtillity;
 
-public class DBServices {
+public class DBService {
 
     private String db_path;
 
     private Connection connection;
     
-    public DBServices() {
+    public DBService() {
         db_path = FileUtillity.DB_PATH;
         connection = null;
 
     }
 
+
+    /**
+     * load the .db file for both users and posts
+     * the .db file is fixed to the {@code DB_PATH} deinfied in FileUtillity.java
+     * @throws ClassNotFoundException if a database file is not found
+     * @throws SQLException if a database access error occurs
+     */
     public void connectToDB() throws Exception {
          
         try {
@@ -37,14 +44,28 @@ public class DBServices {
 
     }
 
+
+    /**
+     * check connection of the db file
+     * @return {@code true} if the connection is still on;
+     *         {@code false} if it is closed or not connected
+     */
     public boolean checkConnection() {
         boolean sucess = false;
-        if (connection != null) {
-            sucess = true;
+        try {
+            if (connection != null && !connection.isClosed()) {
+                sucess = true;
+            }
+        } catch (SQLException e) {
         }
         return sucess;
     }
 
+
+    /**
+     * close the connection to the db file
+     * @throws SQLException if a database access error occurs
+     */
     public void closeConnection() throws SQLException {
         try {
             if (connection != null && !connection.isClosed()) {
