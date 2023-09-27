@@ -54,7 +54,7 @@ public class UserServiceTest {
     public void findUserIndexSucessTest() {
 
         try {
-            user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
+            // user_service.loadUsers(FileUtillity.TEST_USER_FILE_PATH);
         } catch (Exception e) {
             e.printStackTrace();
         }
