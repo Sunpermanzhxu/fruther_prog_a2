@@ -7,6 +7,13 @@ public class User {
     private String first_name;
     private String last_name;
 
+    public User() {
+        this.username = "";
+        this.password = "";
+        this.first_name = "";
+        this.last_name = "";
+    }
+
     public User(String username, String password, String first_name, String last_name) {
 
         this.username = username;

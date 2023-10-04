@@ -2,6 +2,7 @@ package com.dah.services;
 
 import static org.junit.Assert.*;
 
+import java.sql.Statement;
 import java.sql.SQLException;
 
 import org.junit.Before;
@@ -69,6 +70,35 @@ public class DBServicesTest {
             // no action is needed
         }
 
+    }
+
+    @Test
+    public void getStatementSucessTest() {
+        try {
+            db_service.connectToDB();
+        } catch (Exception e) {
+            // no test for this is needed
+        }
+
+        try {
+            Statement statement =  db_service.getStatement();
+
+            assertTrue(statement instanceof Statement);
+        } catch (SQLException e) {
+            fail("db not connected");
+        }
+    }
+
+    @Test
+    public void getStatementNoConnectionTest() {
+        
+        try {
+            Statement statement =  db_service.getStatement();
+
+            fail("should thrown an exception");
+        } catch (Exception e) {
+            assertTrue(true);
+        }
     }
 
 

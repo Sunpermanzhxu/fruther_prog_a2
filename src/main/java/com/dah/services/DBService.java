@@ -1,5 +1,6 @@
 package com.dah.services;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,7 +18,6 @@ public class DBService {
         connection = null;
 
     }
-
 
     /**
      * load the .db file for both users and posts
@@ -75,6 +75,18 @@ public class DBService {
             String err_message = "Error closing the database connection!!!";
             throw new SQLException(err_message);
         }
+    }
+
+
+    /**
+     * provide statement for the other sevices that retrive data from database
+     * @return {@code statement}
+     * @throws SQLException
+     */
+    public Statement getStatement() throws SQLException {
+        Statement statement = connection.createStatement();
+
+        return statement;
     }
 
 }

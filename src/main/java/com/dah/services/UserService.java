@@ -1,83 +1,92 @@
 package com.dah.services;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.dah.model.User;
+import com.dah.utility.FileUtillity;
 
 public class UserService {
 
-    private ArrayList<User> users;
+    private DBService db_service;
 
-    public UserService() {
-        users = new ArrayList<User>();
-    }
+    private User user;
 
-    public void loadUsers(String user_file_path) throws Exception {
-        String line;
-        
-        try {
-            File myObj = new File(user_file_path);
-            Scanner myReader = new Scanner(myObj);
-
-            line = myReader.nextLine();
-            // Read and process data lines
-            while (myReader.hasNextLine()) {
-                line = myReader.nextLine();
-                String[] data = line.split(",");
-
-                String username = data[0];
-                String password = data[1];
-                String first_name = data[2];
-                String last_name = data[3];
-                
-               
-                User read_user = new User(username, password, first_name, last_name);
-                users.add(read_user);
-
-            }
-
-            myReader.close();
-
-        } catch (Exception e) {
-            throw e;
-        }
+    public UserService(DBService db_service) {
+        this.db_service = db_service;
     }
     
 
-    // find index of user by username
-    // return -1 if not found
-    public int findUserIndex(String username) {
+    /**
+     * generate a query that finds a user by username and password
+     * @param username
+     * @param password
+     * @return {@code return_query} a string of the query
+     */
+    private String compileSelectQuery(String username, String password) {
+        String return_query = FileUtillity.SELECT_USER_BY_USERNAME_PRE;
 
-        boolean found = false;
+        return_query += " ";
 
-        int pointer = 0;
+        return_query += "WHERE ";
 
-        while (!found && pointer < users.size()) {
-            User user_i = users.get(pointer);
-            if (username.equals(user_i.getUsername()) ) {
-                found = true;
-            } else {
-                pointer += 1;
+        return_query += "username = ";
+        return_query += "'" + username + "'";
+
+        return_query += " AND ";
+
+        return_query += "password = ";
+        return_query += "'" + password + "'";
+
+        return_query += ";";
+
+        return return_query;
+    }
+
+
+    /**
+     * get a User if retrieving is sucessfull
+     * must have both username and password to avoide security issue
+     * @param req_username      username to search
+     * @param req_password      password to search
+     * @return {@code User}
+     * @throws IllegalArgumentException     if username and password is not in db
+     * @throws Exception        if there is error in connection 
+     */
+    public User retriveUserFromDB(String req_username, String req_password) throws IllegalArgumentException, Exception {
+        try {
+            Statement statement = db_service.getStatement();
+
+            // get resutls
+            String query = this.compileSelectQuery(req_username, req_password);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            User result_user = new User();
+            // process user_data
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                
+                result_user = new User(username, password, first_name, last_name);
             }
+
+            if (result_user.getUsername().equals("")) {
+                String err_message = "Error, no User with username: " + req_username + " !!!";
+                throw new IllegalArgumentException(err_message);
+            }
+
+            return result_user;
+
+        } catch (Exception e) {
+            String err_message = "Error, no connection to be found!!!";
+            throw new Exception(err_message);
         }
-
-        if (!found) {
-            pointer = -1;
-        }
-
-        return pointer;
-
+        
     }
 
 
-    public int getUserNum() {
-        return users.size();
-    }
-
-
-    // TODO: need add user and get user info
 
 }
