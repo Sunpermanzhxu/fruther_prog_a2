@@ -13,9 +13,13 @@ public class UserService {
 
     private User user;
 
+    private String select_usr_pre;
+
     public UserService(DBService db_service) {
         this.db_service = db_service;
         this.user = new User();
+
+        select_usr_pre = FileUtillity.SELECT_USER_PRE;
     }
     
 
@@ -26,7 +30,7 @@ public class UserService {
      * @return {@code return_query} a string of the query
      */
     private String compileSelectQuery(String username, String password) {
-        String return_query = FileUtillity.SELECT_USER_BY_USERNAME_PRE;
+        String return_query = select_usr_pre;
 
         return_query += " ";
 
@@ -47,15 +51,14 @@ public class UserService {
 
 
     /**
-     * get a User if retrieving is sucessfull
+     * load a User if retrieving is sucessfull
      * must have both username and password to avoide security issue
      * @param req_username      username to search
      * @param req_password      password to search
-     * @return {@code User}
      * @throws IllegalArgumentException     if username and password is not in db
      * @throws Exception        if there is error in connection 
      */
-    public User retriveUserFromDB(String req_username, String req_password) throws IllegalArgumentException, Exception {
+    public void retriveUserFromDB(String req_username, String req_password) throws IllegalArgumentException, Exception {
         try {
             Statement statement = db_service.getStatement();
 
@@ -79,13 +82,18 @@ public class UserService {
                 throw new IllegalArgumentException(err_message);
             }
 
-            return this.user;
-
+        } catch (IllegalArgumentException e) {
+            throw e;
         } catch (Exception e) {
             String err_message = "Error, no connection to be found!!!";
             throw new Exception(err_message);
         }
         
+    }
+
+
+    public User getUser(){
+        return this.user;
     }
 
     // TODO: register and getInfo
