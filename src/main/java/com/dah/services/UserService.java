@@ -15,6 +15,7 @@ public class UserService {
 
     public UserService(DBService db_service) {
         this.db_service = db_service;
+        this.user = new User();
     }
     
 
@@ -62,7 +63,7 @@ public class UserService {
             String query = this.compileSelectQuery(req_username, req_password);
             ResultSet resultSet = statement.executeQuery(query);
 
-            User result_user = new User();
+
             // process user_data
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
@@ -70,15 +71,15 @@ public class UserService {
                 String first_name = resultSet.getString("first_name");
                 String last_name = resultSet.getString("last_name");
                 
-                result_user = new User(username, password, first_name, last_name);
+                this.user = new User(username, password, first_name, last_name);
             }
 
-            if (result_user.getUsername().equals("")) {
+            if (this.user.getUsername().equals("")) {
                 String err_message = "Error, no User with username: " + req_username + " !!!";
                 throw new IllegalArgumentException(err_message);
             }
 
-            return result_user;
+            return this.user;
 
         } catch (Exception e) {
             String err_message = "Error, no connection to be found!!!";
@@ -87,6 +88,7 @@ public class UserService {
         
     }
 
+    // TODO: register and getInfo
 
 
 }
