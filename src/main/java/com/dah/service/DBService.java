@@ -1,4 +1,4 @@
-package com.dah.services;
+package com.dah.service;
 
 import java.sql.Statement;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package com.dah.services;
+package com.dah.service;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.dah.service.DBService;
 
 public class DBServicesTest {
     

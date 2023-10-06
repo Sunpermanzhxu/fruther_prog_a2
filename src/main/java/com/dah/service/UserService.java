@@ -1,7 +1,6 @@
-package com.dah.services;
+package com.dah.service;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.dah.model.User;
