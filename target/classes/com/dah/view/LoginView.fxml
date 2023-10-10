@@ -18,6 +18,9 @@
 
     <PasswordField fx:id="passwordField" promptText="Password" />
 
-    <Button text="Login" onAction="#handleLogin" />
+    <Button fx:id="loginButton" text="Login" onAction="#handleLogin" />
+    <Button fx:id="registerButton" text="Register" onAction="#handleRegister" />
+
+    <Text fx:id="loginErrText" text="" />
 
 </VBox>

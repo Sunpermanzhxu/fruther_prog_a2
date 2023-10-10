@@ -11,12 +11,15 @@ public class UserService {
     private DBService db_service;
 
     private User user;
+    private boolean valid_user;
 
     private String select_usr_pre;
 
     public UserService(DBService db_service) {
         this.db_service = db_service;
+
         this.user = new User();
+        this.valid_user = false;
 
         select_usr_pre = FileUtillity.SELECT_USER_PRE;
     }
@@ -88,6 +91,15 @@ public class UserService {
             throw new Exception(err_message);
         }
         
+    }
+
+
+    /**
+     * check login status
+     * @return {@code valid_user} the bullena value
+     */
+    public boolean checkLogin() {
+        return valid_user;
     }
 
 
