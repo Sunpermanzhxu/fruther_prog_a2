@@ -8,13 +8,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class LoginController extends Controller {
     
     @FXML
     private TextField usernameField;
     @FXML
-    private TextField PasswordField;
+    private PasswordField passwordField;
 
     @FXML
     private Button loginButton;
@@ -22,13 +23,10 @@ public class LoginController extends Controller {
     private Button registerButton;
 
     @FXML
-    private Text loginErrText;
-
-    private UserService userService;
+    private Label errText;
 
 
     public LoginController() {
-        // this.userService = super.getUserService();
 
     }
 
@@ -38,14 +36,17 @@ public class LoginController extends Controller {
      */
     @FXML
     private void handleLogin() {
+        UserService userService = super.passUserService();
+
         String username = usernameField.getText();
-        String password = PasswordField.getText();
+        String password = passwordField.getText();
 
         try {
             userService.retriveUserFromDB(username, password);
             // TODO: move to next page
         } catch (Exception e) {
-            loginErrText.setText(e.getMessage());
+            errText.setText("Username or password is incorect");
+            errText.setStyle("-fx-text-fill: #FF0000;");
         }
     }
 

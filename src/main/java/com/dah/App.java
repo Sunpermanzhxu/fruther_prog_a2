@@ -71,7 +71,7 @@ public class App extends Application
             primaryStage.setTitle("Data Analysis Hub");
 
             // Load the FXML file and set it as the root of the scene
-            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.setScene(new Scene(loader.load(), window_width, window_height));
 
             // Get the controller instance from the loader
             Controller controller = loader.getController();

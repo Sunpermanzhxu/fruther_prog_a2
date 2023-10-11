@@ -14,8 +14,8 @@ public class Controller {
         this.app = app;
     }
 
-    // public UserService getUserService() {
-    //     return app.getUserService();
-    // }
+    public UserService passUserService() {
+        return app.getUserService();
+    }
     
 }
