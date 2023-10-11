@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application  
 {
-    private Stage primaryStage;
+    // private Stage primaryStage;
 
     private static int window_width;
     private static int window_height;
@@ -29,7 +29,7 @@ public class App extends Application
     private static UserService userService;
     // TODO: add postService
 
-    private Controller controller;
+    // private Controller controller;
     private DAH_STATE state;
 
     private static void initiallize() {
@@ -57,38 +57,41 @@ public class App extends Application
         launch(args);
     }
 
-    public void showPage() {
+    // public void showPage() {
         
-        System.out.println("show");
-        try {
-            String file_path = state.getFileName();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(file_path));
-            Parent root = loader.load();
-            // update controller
-            this.controller = loader.getController();
-            controller.setApp(this);
+    //     try {
+    //         String file_path = state.getFileName();
+    //         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LoginView.fxml"));
+    //         Parent root = loader.load();
+    //         System.out.println("root");
+    //         // update controller
+    //         this.controller = loader.getController();
+    //         controller.setApp(this);
 
-            Scene scene = new Scene(root, window_width, window_height);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("DAH");
-            primaryStage.show();
+    //         Scene scene = new Scene(root, window_width, window_height);
+    //         primaryStage.setScene(scene);
+    //         primaryStage.setTitle("DAH");
+    //         primaryStage.show();
             
-        } catch (IOException  e) {
-            // TODO: handle exception
-        }
-    }
+    //     } catch (IOException  e) {
+    //         System.out.println(e.getStackTrace());
+    //         System.out.println("io err");
+    //     }
+    // }
 
     // TODO: other show function
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        this.state = DAH_STATE.LOGIN;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LoginView.fxml"));
+        primaryStage.setTitle("Data Analysis Hub");
 
-        controller = new Controller();
-        System.out.println("start");
+        // Load the FXML file and set it as the root of the scene
+        primaryStage.setScene(new Scene(loader.load()));
 
-        // from here the journy begains
-        showPage();
+        // Get the controller instance from the loader
+        LoginController controller = loader.getController();
+
+        primaryStage.show();
     }
 }

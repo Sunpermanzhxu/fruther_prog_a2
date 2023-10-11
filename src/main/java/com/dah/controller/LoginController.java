@@ -28,7 +28,7 @@ public class LoginController extends Controller {
 
 
     public LoginController() {
-        this.userService = super.getUserService();
+        // this.userService = super.getUserService();
 
     }
 
