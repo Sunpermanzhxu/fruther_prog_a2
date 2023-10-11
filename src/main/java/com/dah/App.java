@@ -40,6 +40,12 @@ public class App extends Application
         userService = new UserService(dbService);
         // TODO: add postService
 
+        try {
+            dbService.connectToDB();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public UserService getUserService() {
@@ -57,41 +63,34 @@ public class App extends Application
         launch(args);
     }
 
-    // public void showPage() {
+    public void showPage(Stage primaryStage) {
         
-    //     try {
-    //         String file_path = state.getFileName();
-    //         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LoginView.fxml"));
-    //         Parent root = loader.load();
-    //         System.out.println("root");
-    //         // update controller
-    //         this.controller = loader.getController();
-    //         controller.setApp(this);
+        try {
+            String file_path = state.getFileName();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(file_path));
+            primaryStage.setTitle("Data Analysis Hub");
 
-    //         Scene scene = new Scene(root, window_width, window_height);
-    //         primaryStage.setScene(scene);
-    //         primaryStage.setTitle("DAH");
-    //         primaryStage.show();
+            // Load the FXML file and set it as the root of the scene
+            primaryStage.setScene(new Scene(loader.load()));
+
+            // Get the controller instance from the loader
+            Controller controller = loader.getController();
+            controller.setApp(this);
+
+            primaryStage.show();
             
-    //     } catch (IOException  e) {
-    //         System.out.println(e.getStackTrace());
-    //         System.out.println("io err");
-    //     }
-    // }
+        } catch (IOException  e) {
+            System.out.println("io err");
+        }
+    }
 
     // TODO: other show function
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LoginView.fxml"));
-        primaryStage.setTitle("Data Analysis Hub");
+        state = DAH_STATE.LOGIN;
 
-        // Load the FXML file and set it as the root of the scene
-        primaryStage.setScene(new Scene(loader.load()));
+        showPage(primaryStage);
 
-        // Get the controller instance from the loader
-        LoginController controller = loader.getController();
-
-        primaryStage.show();
     }
 }
