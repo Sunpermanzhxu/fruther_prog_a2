@@ -42,10 +42,11 @@ public class LoginController extends Controller {
         String password = passwordField.getText();
 
         try {
+            errText.setText("Login Sucessed");
             userService.retriveUserFromDB(username, password);
             // TODO: move to next page
         } catch (Exception e) {
-            errText.setText("Username or password is incorect");
+            errText.setText(e.getMessage());
             errText.setStyle("-fx-text-fill: #FF0000;");
         }
     }

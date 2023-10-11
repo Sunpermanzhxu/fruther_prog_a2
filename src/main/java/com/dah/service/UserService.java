@@ -80,7 +80,7 @@ public class UserService {
             }
 
             if (this.user.getUsername().equals("")) {
-                String err_message = "Error, no User with username: " + req_username + " !!!";
+                String err_message = "Username or password is incorect!!!";
                 throw new IllegalArgumentException(err_message);
             }
 
