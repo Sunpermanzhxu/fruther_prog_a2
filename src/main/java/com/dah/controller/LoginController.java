@@ -2,6 +2,7 @@ package com.dah.controller;
 
 import com.dah.App;
 import com.dah.service.UserService;
+import com.dah.utility.DAH_STATE;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -42,8 +43,11 @@ public class LoginController extends Controller {
         String password = passwordField.getText();
 
         try {
-            errText.setText("Login Sucessed");
             userService.retriveUserFromDB(username, password);
+            errText.setText("Login Sucessed");
+            errText.setStyle("-fx-text-fill: #000000;");
+
+            // super.switchAppState(DAH_STATE );
             // TODO: move to next page
         } catch (Exception e) {
             errText.setText(e.getMessage());
@@ -52,6 +56,9 @@ public class LoginController extends Controller {
     }
 
 
+    /**
+     * change the state to move to register
+     */
     @FXML
     private void handleRegister() {
         // TODO: to be implanted later

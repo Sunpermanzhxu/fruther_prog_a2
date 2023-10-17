@@ -2,7 +2,7 @@ package com.dah.utility;
 
 public enum DAH_STATE {
     LOGIN("LoginView.fxml");
-    // SIGN_UP,
+    // REGISITER,
     // DASHBOARD,                              // from this state forward the user is logged in
     // EDIT_PROFILE,
     // ADD_A_POST,
