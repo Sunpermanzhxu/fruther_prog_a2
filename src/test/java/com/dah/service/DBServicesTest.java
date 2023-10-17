@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dah.service.DBService;
-
 public class DBServicesTest {
     
     DBService db_service;
