@@ -79,8 +79,11 @@ public class UserService {
                 this.user = new User(username, password, first_name, last_name);
             }
 
+            valid_user = true;
+
             if (this.user.getUsername().equals("")) {
                 String err_message = "Username or password is incorect!!!";
+                valid_user = false;
                 throw new IllegalArgumentException(err_message);
             }
 
@@ -94,17 +97,17 @@ public class UserService {
     }
 
 
-    /**
-     * check login status
-     * @return {@code valid_user} the bullena value
-     */
-    public boolean checkLogin() {
+    public User getUser(){
+        return this.user;
+    }
+
+    public boolean getValidity() {
         return valid_user;
     }
 
 
-    public User getUser(){
-        return this.user;
+    public void registUser() {
+
     }
 
     // TODO: register and getInfo

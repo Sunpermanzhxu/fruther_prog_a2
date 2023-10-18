@@ -10,7 +10,7 @@
       xmlns:fx="http://javafx.com/fxml"
       spacing="10"
       alignment="CENTER"
-      fx:controller="com.dah.controller.ResgisterController">
+      fx:controller="com.dah.controller.RegisterController">
 
     <Label text="Login" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
@@ -19,9 +19,12 @@
     <PasswordField fx:id="passwordField" promptText="Password" />
     <PasswordField fx:id="confirmField" promptText="Confirm Password" />
 
+    <TextField fx:id="firstNameField" promptText="First Name" />
+    <TextField fx:id="lastNameField" promptText="Last Name" />
+
     <Button fx:id="registerButton" text="Register" onAction="#handleRegister" />
     <Button fx:id="loginButton" text="Have an account" onAction="#handleLogin" />
 
-    <Text fx:id="registerErrText" text="" />
+    <!-- <Text fx:id="registErrText" text="" /> -->
 
 </VBox>

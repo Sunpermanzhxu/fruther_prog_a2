@@ -22,7 +22,7 @@ public class LoginController extends Controller {
     private Button registerButton;
 
     @FXML
-    private Label errText;
+    private Label loginErrText;
 
 
     public LoginController() {
@@ -42,13 +42,13 @@ public class LoginController extends Controller {
 
         try {
             userService.retriveUserFromDB(username, password);
-            errText.setText("Login Sucessed");
-            errText.setStyle("-fx-text-fill: #000000;");
+            loginErrText.setText("Login Sucessed");
+            loginErrText.setStyle("-fx-text-fill: #000000;");
 
             super.switchAppState(DAH_STATE.DASHBOARD);
         } catch (Exception e) {
-            errText.setText(e.getMessage());
-            errText.setStyle("-fx-text-fill: #FF0000;");
+            loginErrText.setText(e.getMessage());
+            loginErrText.setStyle("-fx-text-fill: #FF0000;");
         }
     }
 
@@ -58,7 +58,6 @@ public class LoginController extends Controller {
      */
     @FXML
     private void handleRegister() {
-        // TODO: to be implanted later
         super.switchAppState(DAH_STATE.REGISITER);
     }
 

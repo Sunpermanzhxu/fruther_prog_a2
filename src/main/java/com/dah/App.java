@@ -92,7 +92,7 @@ public class App extends Application
             this.primaryStage.show();
             
         } catch (IOException  e) {
-            System.out.println("io err");
+            System.out.println(e.getMessage());
         }
     }
 

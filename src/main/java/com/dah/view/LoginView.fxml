@@ -21,6 +21,6 @@
     <Button fx:id="loginButton" text="Login" onAction="#handleLogin" />
     <Button fx:id="registerButton" text="Register" onAction="#handleRegister" />
 
-    <Text fx:id="loginErrText" text="" />
+    <!-- <Text fx:id="loginErrText" text="" /> -->
 
 </VBox>
