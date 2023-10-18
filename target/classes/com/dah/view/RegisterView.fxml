@@ -17,7 +17,7 @@
     <TextField fx:id="usernameField" promptText="Username" />
 
     <PasswordField fx:id="passwordField" promptText="Password" />
-    <PasswordField fx:id="confirmField" promptText="Confirm Password" />
+    <PasswordField fx:id="confirmPassField" promptText="Confirm Password" />
 
     <TextField fx:id="firstNameField" promptText="First Name" />
     <TextField fx:id="lastNameField" promptText="Last Name" />
@@ -25,6 +25,6 @@
     <Button fx:id="registerButton" text="Register" onAction="#handleRegister" />
     <Button fx:id="loginButton" text="Have an account" onAction="#handleLogin" />
 
-    <!-- <Text fx:id="registErrText" text="" /> -->
+    <Label fx:id="registErrText" text="" />
 
 </VBox>

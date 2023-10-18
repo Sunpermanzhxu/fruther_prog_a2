@@ -6,6 +6,7 @@ import com.dah.utility.DAH_STATE;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -13,8 +14,10 @@ public class LoginController extends Controller {
     
     @FXML
     private TextField usernameField;
+    private String username;
     @FXML
     private PasswordField passwordField;
+    private String password;
 
     @FXML
     private Button loginButton;
@@ -26,7 +29,8 @@ public class LoginController extends Controller {
 
 
     public LoginController() {
-
+        username = "";
+        password = "";
     }
 
     /**
@@ -37,8 +41,8 @@ public class LoginController extends Controller {
     private void handleLogin() {
         UserService userService = super.passUserService();
 
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        username = usernameField.getText();
+        password = passwordField.getText();
 
         try {
             userService.retriveUserFromDB(username, password);
