@@ -3,6 +3,7 @@ package com.dah.service;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.dah.utility.FileUtillity;
@@ -63,6 +64,40 @@ public class DBService {
 
 
     /**
+     * make select query run in this file for better management
+     * @param query the SELECT query to be executed
+     * @return {@code resultSet} to be processed later in different services
+     * @throws SQLException if there is a db connection error
+     */
+    public ResultSet runSelectQuery(String query) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        ResultSet resultSet = statement.executeQuery(query);
+
+        statement.close();
+
+        return resultSet;
+    }
+
+
+    /**
+     * make insert, update and delet query run in this file for better management
+     * @param query the query to be executed
+     * @return {@code row_change} as number of affected rows
+     * @throws SQLException if there is a db connection error
+     */
+    public int runUpdateQuery(String query) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        int row_change = statement.executeUpdate(query);
+
+        statement.close();
+
+        return row_change;
+    }
+
+
+    /**
      * close the connection to the db file
      * @throws SQLException if a database access error occurs
      */
@@ -78,15 +113,16 @@ public class DBService {
     }
 
 
-    /**
-     * provide statement for the other sevices that retrive data from database
-     * @return {@code statement}
-     * @throws SQLException
-     */
-    public Statement getStatement() throws SQLException {
-        Statement statement = connection.createStatement();
+    // // no longer needed
+    // /**
+    //  * provide statement for the other sevices that retrive data from database
+    //  * @return {@code statement}
+    //  * @throws SQLException
+    //  */
+    // public Statement getStatement() throws SQLException {
+    //     Statement statement = connection.createStatement();
 
-        return statement;
-    }
+    //     return statement;
+    // }
 
 }

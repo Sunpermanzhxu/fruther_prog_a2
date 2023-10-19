@@ -61,47 +61,42 @@ public class UserService {
     /**
      * load a User if retrieving is sucessfull
      * must have both username and password to avoide security issue
+     * must only have user result form a query
      * @param req_username      username to search
      * @param req_password      password to search
+     * @throws SQLException
      * @throws IllegalArgumentException     if username and password is not in db
      * @throws Exception        if there is error in connection 
      */
-    public void retriveUserFromDB(String req_username, String req_password) throws IllegalArgumentException, Exception {
-        
-        valid_user = false;
-        
+    public void retriveUserFromDB(String req_username, String req_password) throws SQLException {
         try {
-            Statement statement = db_service.getStatement();
-
-            // get resutls
             String query = compileSelectQuery(req_username, req_password);
-            ResultSet resultSet = statement.executeQuery(query);
 
-            // process user_data
+            ResultSet resultSet = db_service.runSelectQuery(query);
+
+            String username = "";
+            String password = "";
+            String first_name = "";
+            String last_name = "";
+
             while (resultSet.next()) {
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String first_name = resultSet.getString("first_name");
-                String last_name = resultSet.getString("last_name");
-                
-                this.user = new User(username, password, first_name, last_name);
+                username = resultSet.getString("username");
+                password = resultSet.getString("password");
+                first_name = resultSet.getString("first_name");
+                last_name = resultSet.getString("last_name");
             }
 
-            statement.close();
-
-            if (this.user.getUsername().equals("")) {
-                String err_message = "Username or password is incorect!!!";
-                valid_user = false;
+            if (username.equals("")) {
+                // no data got
+                String err_message = "Invalid username or password";
                 throw new IllegalArgumentException(err_message);
             } else {
-                valid_user = true;
+                user = new User(username, password, first_name, last_name);
             }
 
-        } catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
-            String err_message = "Error, no connection to be found!!!";
-            throw new Exception(err_message);
+        } catch (SQLException e) {
+            String err_message = "Error: Database connection error!!!";
+            throw new SQLException(err_message);
         }
         
     }
@@ -151,22 +146,21 @@ public class UserService {
      * @throws SQLException
      * @throws IllegalArgumentException
      */
-    private void storeAccount(String username, String password, String f_name, String l_name) throws SQLException, IllegalArgumentException {
+    private void storeAccount(String username, String password, String f_name, String l_name) {
+        
         try {
-            Statement statement = db_service.getStatement();
+            String query = compileInsertQuery(username, password, f_name, l_name);
 
-            String query = compileInsertQuery(insert_user_pre, insert_user_pre, select_usr_pre, insert_user_pre);
-            
-            // int row_change = statement.executeUpdate(query);
+            int rows_changed = db_service.runUpdateQuery(query);
 
-            statement.close();
+            if (rows_changed < 1) {
+                // no data stored
+                String err_message = "Invalid username or password";
+                throw new IllegalArgumentException(err_message);
+            }
         } catch (SQLException e) {
-            String err_message = "Error, no connection to be found!!!";
-            throw new SQLException(err_message);
-            
-        } catch (IllegalArgumentException e) {
-            String err_message = "Error, username already exist!!!";
-            throw new IllegalArgumentException(err_message);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 

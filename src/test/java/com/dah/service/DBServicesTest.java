@@ -3,6 +3,7 @@ package com.dah.service;
 import static org.junit.Assert.*;
 
 import java.sql.Statement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.Before;
@@ -72,34 +73,188 @@ public class DBServicesTest {
 
     }
 
+
     @Test
-    public void getStatementSucessTest() {
+    public void runSelectQuerySucessTest() {
+        String test_username = "mocko";
+        String test_password = "qwer1234";
+        String test_first_name = "Iam";
+        String test_last_name = "Mock";
+
         try {
             db_service.connectToDB();
+
+            String query = "SELECT * FROM User WHERE username = 'mocko' AND password = 'qwer1234';";
+            ResultSet resultSet = db_service.runSelectQuery(query);
+
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+
+                assertEquals(test_username, username);
+                assertEquals(test_password, password);
+                assertEquals(test_first_name, first_name);
+                assertEquals(test_last_name, last_name);
+            }
+
         } catch (Exception e) {
-            // no test for this is needed
+            
+            fail(e.getMessage());
         }
+    }
+    
+
+    @Test
+    public void runSelectQuerySelectNoneExitTest() {
+        String test_username = "mocko";
+        String test_password = "qwer1234";
+        String test_first_name = "Iam";
+        String test_last_name = "Mock";
 
         try {
-            Statement statement =  db_service.getStatement();
+            db_service.connectToDB();
 
-            assertTrue(statement instanceof Statement);
-        } catch (SQLException e) {
-            fail("db not connected");
+            String query = "SELECT * FROM User WHERE username = 'wasd' AND password = 'qwer1234';";
+            ResultSet resultSet = db_service.runSelectQuery(query);
+
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+
+                assertEquals("", username);
+                assertEquals("", password);
+                assertEquals("", first_name);
+                assertEquals("", last_name);
+            }
+
+        } catch (Exception e) {
+            
+            fail(e.getMessage());
         }
     }
 
-    @Test
-    public void getStatementNoConnectionTest() {
-        
-        try {
-            Statement statement =  db_service.getStatement();
 
-            fail("should thrown an exception");
+    @Test
+    public void runSelectQuerySelectWrongTableTest() {
+        String test_username = "mocko";
+        String test_password = "qwer1234";
+        String test_first_name = "Iam";
+        String test_last_name = "Mock";
+
+        try {
+            db_service.connectToDB();
+
+            String query = "SELECT * FROM Post WHERE username = 'mocko' AND password = 'qwer1234';";
+            ResultSet resultSet = db_service.runSelectQuery(query);
+
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+
+                assertFalse(test_username.equals(username));
+                assertFalse(test_password.equals(password));
+                assertFalse(test_first_name.equals(first_name));
+                assertFalse(test_last_name.equals(last_name));
+            }
+
         } catch (Exception e) {
+            
             assertTrue(true);
         }
     }
 
+    @Test
+    public void runSelectQuerySelectNotExistingTableTest() {
+        String test_username = "mocko";
+        String test_password = "qwer1234";
+        String test_first_name = "Iam";
+        String test_last_name = "Mock";
+
+        try {
+            db_service.connectToDB();
+
+            String query = "SELECT * FROM Cake WHERE username = 'mocko' AND password = 'qwer1234';";
+            ResultSet resultSet = db_service.runSelectQuery(query);
+
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+
+                fail("should not continue");
+            }
+
+        } catch (Exception e) {
+            
+            assertTrue(true);
+        }
+    }
+
+
+    @Test
+    public void runUpdateQuerySucessInsertTest() {
+        try {
+            db_service.connectToDB();
+
+            String query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('asdf', 'asdf', 'asdf', 'asdf');";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed >= 1);
+
+            String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+            db_service.runUpdateQuery(delete_added_data);
+
+        } catch (Exception e) {
+            
+            fail(e.getMessage());
+        }
+    }
+
+    
+    @Test
+    public void runUpdateQueryInsertDupePKTest() {
+        try {
+            db_service.connectToDB();
+
+            String query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('qwer', 'asdf', 'asdf', 'asdf');";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed < 1);
+
+            // String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+            // db_service.runUpdateQuery(delete_added_data);
+
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+        
+    }
+
+    
+    @Test
+    public void runUpdateQueryInsertIntoWrongTableTest() {
+        try {
+            db_service.connectToDB();
+
+            String query = "INSERT INTO Post (username, password, first_name, last_name) VALUES ('qwer', 'asdf', 'asdf', 'asdf');";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed < 1);
+
+            // String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+            // db_service.runUpdateQuery(delete_added_data);
+
+        } catch (Exception e) {
+            
+            assertTrue(true);
+        }
+    }
 
 }
