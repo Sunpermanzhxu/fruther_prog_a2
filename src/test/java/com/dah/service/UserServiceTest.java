@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -14,14 +15,15 @@ import org.junit.Test;
 
 import com.dah.model.User;
 
+
 public class UserServiceTest {
 
     DBService db_service;
     UserService user_service;
 
+
     @Before
     public void setUp() {
-
         db_service = new DBService();
         try {
             db_service.connectToDB();
@@ -34,6 +36,14 @@ public class UserServiceTest {
 
     @Test
     public void retriveUserFromDBSuccessTest() {
+        
+        // db_service = new DBService();
+        // try {
+        //     db_service.connectToDB();
+        // } catch (Exception e) {
+        // }
+        // user_service = new UserService(db_service);
+
         String username = "qwer";
         String password = "1234qwer";
 
@@ -51,7 +61,15 @@ public class UserServiceTest {
 
 
     @Test
-    public void retriveUserFromDBDataBotExistTest() {
+    public void retriveUserFromDBDataNotExistTest() {
+        
+        // db_service = new DBService();
+        // try {
+        //     db_service.connectToDB();
+        // } catch (Exception e) {
+        // }
+        // user_service = new UserService(db_service);
+
         // also a test for wrong username
 
         String username = "wasd";
@@ -68,6 +86,13 @@ public class UserServiceTest {
 
     @Test
     public void retriveUserFromDBWWrongPasswordTest() {
+        
+        // db_service = new DBService();
+        // try {
+        //     db_service.connectToDB();
+        // } catch (Exception e) {
+        // }
+        // user_service = new UserService(db_service);
 
         String username = "qwer";
         String password = "zxcv0987";
@@ -81,44 +106,55 @@ public class UserServiceTest {
 
     }
 
-    // @Test
-    // public void registerUserSucessfulTest() {
 
-    //     String mock_username = "neverexited";
-    //     String mock_password = "1234never";
+     @Test
+     public void registUserSucessTest() {
+        String test_username = "asdf";
+        String test_password = "asdf";
+        String test_first_name = "adsf";
+        String test_last_name = "asdf";
 
-    //     String mock_f_name = "not";
-    //     String mock_l_name = "matter";
+        try {
+            user_service.registUser(test_username, test_password, test_first_name, test_last_name);
+            assertTrue(true);
+        } catch (IllegalArgumentException | SQLException e) {
+            fail(e.getMessage());
+        }
 
-    //     String mock_query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('qwer', 'adf', 'qwesasd', 'wssx');";
+        String reset_dele_query = "DELETE FROM user WHERE username = 'asdf';";
 
+        try {
+            db_service.runUpdateQuery(reset_dele_query);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-    //     Statement mock_statement = mock(Statement.class());
-    //     try {
-    //         when(mock_statement.executeUpdate(mock_query)).thenReturn(1);
-    //     } catch (SQLException e) {
-    //         // TODO Auto-generated catch block
-    //         e.printStackTrace();
-    //     }
+     }
 
-    //     DBService mockDbService = mock(DBService.class);
+     @Test
+     public void registUseralreadyExistTest() {
+        String test_username = "qwer";
+        String test_password = "qwer";
+        String test_first_name = "qwer";
+        String test_last_name = "qwer";
 
-    //     try {
-    //         when(mockDbService.getStatement()).thenReturn(mock_statement);
-    //     } catch (SQLException e) {
-    //         // TODO Auto-generated catch block
-    //         e.printStackTrace();
-    //     }
+        try {
+            user_service.registUser(test_username, test_password, test_first_name, test_last_name);
+            fail("should not continue");
+        } catch (IllegalArgumentException | SQLException e) {
+            assertTrue(true);
+        }
 
-    //     user_service = new UserService(mockDbService);
+        // String reset_dele_query = "DELETE FROM user WHERE username = 'asdf';";
 
-    //     try {
-    //         user_service.registUser(mock_username, mock_password, mock_f_name, mock_l_name);
+        // try {
+        //     db_service.runUpdateQuery(reset_dele_query);
+        // } catch (SQLException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
 
-    //         assertTrue(true);
-    //     } catch (IllegalArgumentException | SQLException e) {
-    //         fail(e.getMessage());
-    //     }
-    // }
+     }
 
 }

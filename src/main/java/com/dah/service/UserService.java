@@ -1,8 +1,8 @@
 package com.dah.service;
 
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.dah.model.User;
 import com.dah.utility.FileUtillity;
@@ -14,7 +14,7 @@ public class UserService {
     private User user;
     private boolean valid_user;
 
-    private String select_usr_pre;
+    private String select_user_pre;
     private String insert_user_pre;
 
     public UserService(DBService db_service) {
@@ -23,7 +23,7 @@ public class UserService {
         this.user = new User();
         this.valid_user = false;
 
-        select_usr_pre = FileUtillity.SELECT_USER_PRE;
+        select_user_pre = FileUtillity.SELECT_USER_PRE;
         insert_user_pre = FileUtillity.INSERT_USER_PRE;
     }
     
@@ -35,7 +35,7 @@ public class UserService {
      * @return {@code return_query} a string of the query
      */
     private String compileSelectQuery(String username, String password) {
-        String return_query = select_usr_pre;
+        String return_query = select_user_pre;
 
         return_query += " ";
 
@@ -44,13 +44,9 @@ public class UserService {
         return_query += "username = ";
         return_query += "'" + username + "'";
 
-        if (password.length() < 1) {
-            return_query += "";
-        } else {
-            return_query += " AND ";
-            return_query += "password = ";
-            return_query += "'" + password + "'";
-        }
+        return_query += " AND ";
+        return_query += "password = ";
+        return_query += "'" + password + "'";
 
         return_query += ";";
 
@@ -72,8 +68,11 @@ public class UserService {
         try {
             String query = compileSelectQuery(req_username, req_password);
 
-            ResultSet resultSet = db_service.runSelectQuery(query);
+            Statement statement = db_service.getStatement();
 
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // data hold
             String username = "";
             String password = "";
             String first_name = "";
@@ -86,13 +85,15 @@ public class UserService {
                 last_name = resultSet.getString("last_name");
             }
 
-            if (username.equals("")) {
+            if (username.length() < 1) {
                 // no data got
                 String err_message = "Invalid username or password";
                 throw new IllegalArgumentException(err_message);
             } else {
                 user = new User(username, password, first_name, last_name);
             }
+
+            statement.close();
 
         } catch (SQLException e) {
             String err_message = "Error: Database connection error!!!";
@@ -121,7 +122,7 @@ public class UserService {
      * @param l_name
      * @return {@code return_query} a string of the query
      */
-    public String compileInsertQuery(String username, String password, String f_name, String l_name) {
+    private String compileInsertQuery(String username, String password, String f_name, String l_name) {
         String return_query = insert_user_pre;
 
         return_query += "(";
@@ -146,7 +147,7 @@ public class UserService {
      * @throws SQLException
      * @throws IllegalArgumentException
      */
-    private void storeAccount(String username, String password, String f_name, String l_name) {
+    private void storeAccount(String username, String password, String f_name, String l_name) throws IllegalArgumentException, SQLException {
         
         try {
             String query = compileInsertQuery(username, password, f_name, l_name);
@@ -159,8 +160,10 @@ public class UserService {
                 throw new IllegalArgumentException(err_message);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            String err_message = "";
+            throw new SQLException(err_message);
+        } catch (IllegalArgumentException e) {
+            throw e;
         }
     }
 

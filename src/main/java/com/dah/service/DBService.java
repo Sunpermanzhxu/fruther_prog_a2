@@ -63,21 +63,29 @@ public class DBService {
     }
 
 
-    /**
-     * make select query run in this file for better management
-     * @param query the SELECT query to be executed
-     * @return {@code resultSet} to be processed later in different services
-     * @throws SQLException if there is a db connection error
-     */
-    public ResultSet runSelectQuery(String query) throws SQLException {
-        Statement statement = connection.createStatement();
+    // /**
+    //  * make select query run in this file for better management
+    //  * @param query the SELECT query to be executed
+    //  * @return {@code resultSet} to be processed later in different services
+    //  * @throws SQLException if there is a db connection error
+    //  */
+    // public ResultSet runSelectQuery(String query) throws SQLException {
+    //     Statement statement = connection.createStatement();
+    //     System.out.println("in dbservices");
+    //     System.out.println(query);
+    //     ResultSet resultSet = statement.executeQuery(query);
 
-        ResultSet resultSet = statement.executeQuery(query);
 
-        statement.close();
+    //     while (resultSet.next()) {
+    //         String username = resultSet.getString("username");
+    //         System.out.println("db running");
+    //         System.out.println(username);
+    //     }
 
-        return resultSet;
-    }
+    //     // statement.close();
+
+    //     return resultSet;
+    // }
 
 
     /**
@@ -114,15 +122,15 @@ public class DBService {
 
 
     // // no longer needed
-    // /**
-    //  * provide statement for the other sevices that retrive data from database
-    //  * @return {@code statement}
-    //  * @throws SQLException
-    //  */
-    // public Statement getStatement() throws SQLException {
-    //     Statement statement = connection.createStatement();
+    /**
+     * provide statement for the other sevices that retrive data from database
+     * @return {@code statement}
+     * @throws SQLException
+     */
+    public Statement getStatement() throws SQLException {
+        Statement statement = connection.createStatement();
 
-    //     return statement;
-    // }
+        return statement;
+    }
 
 }
