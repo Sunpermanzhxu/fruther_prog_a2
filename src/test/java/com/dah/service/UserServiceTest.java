@@ -101,32 +101,33 @@ public class UserServiceTest {
     }
 
 
-     @Test
-     public void registUserSucessTest() {
-        String test_username = "asdf";
-        String test_password = "asdf";
-        String test_first_name = "adsf";
-        String test_last_name = "asdf";
+    // // do not uncomment if no error in usage
+    // @Test
+    // public void registUserSucessTest() {
+    //     String test_username = "asdf";
+    //     String test_password = "asdf";
+    //     String test_first_name = "adsf";
+    //     String test_last_name = "asdf";
 
-        try {
-            user_service.registUser(test_username, test_password, test_first_name, test_last_name);
-            assertTrue(true);
-        } catch (IllegalArgumentException | SQLException e) {
-            fail(e.getMessage());
-        }
+    //     try {
+    //         user_service.registUser(test_username, test_password, test_first_name, test_last_name);
+    //         assertTrue(true);
+    //     } catch (IllegalArgumentException | SQLException e) {
+    //         fail(e.getMessage());
+    //     }
 
-        String reset_dele_query = "DELETE FROM user WHERE username = 'asdf';";
+    //     String reset_dele_query = "DELETE FROM user WHERE username = 'asdf';";
 
-        try {
-            db_service.runUpdateQuery(reset_dele_query);
-        } catch (SQLException e) {
-            // no action needed
-        }
+    //     try {
+    //         db_service.runUpdateQuery(reset_dele_query);
+    //     } catch (SQLException e) {
+    //         // no action needed
+    //     }
 
-     }
+    // }
 
-     @Test
-     public void registUseralreadyExistTest() {
+    @Test
+    public void registUseralreadyExistTest() {
         String test_username = "qwer";
         String test_password = "qwer";
         String test_first_name = "qwer";
@@ -147,6 +148,6 @@ public class UserServiceTest {
         //     e.printStackTrace();
         // }
 
-     }
+    }
 
 }

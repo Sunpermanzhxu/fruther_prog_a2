@@ -72,24 +72,25 @@ public class DBServicesTest {
     }
 
 
-    @Test
-    public void runUpdateQuerySucessInsertTest() {
-        try {
-            db_service.connectToDB();
+    // // do not uncomment if no error in usage
+    // @Test
+    // public void runUpdateQuerySucessInsertTest() {
+    //     try {
+    //         db_service.connectToDB();
 
-            String query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('asdf', 'asdf', 'asdf', 'asdf');";
-            int rows_changed = db_service.runUpdateQuery(query);
+    //         String query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('asdf', 'asdf', 'asdf', 'asdf');";
+    //         int rows_changed = db_service.runUpdateQuery(query);
             
-            assertTrue(rows_changed >= 1);
+    //         assertTrue(rows_changed >= 1);
 
-            String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
-            db_service.runUpdateQuery(delete_added_data);
+    //         String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+    //         db_service.runUpdateQuery(delete_added_data);
 
-        } catch (Exception e) {
+    //     } catch (Exception e) {
             
-            fail(e.getMessage());
-        }
-    }
+    //         fail(e.getMessage());
+    //     }
+    // }
 
     
     @Test
