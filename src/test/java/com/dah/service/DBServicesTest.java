@@ -2,7 +2,6 @@ package com.dah.service;
 
 import static org.junit.Assert.*;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.Before;
