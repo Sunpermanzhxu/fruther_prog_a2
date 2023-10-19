@@ -80,12 +80,12 @@ public class RegisterController extends Controller {
         } else {
             // try to save user
             try {
-                userService.registUser(username, confrim_password, first_name, last_name);
+                userService.registUser(username, password, first_name, last_name);
                 registErrText.setText("You have beeb registered!");
                 registErrText.setStyle("-fx-text-fill: #000000;");
             } catch (IllegalArgumentException | SQLException e) {
                 // handel case when there is already a user with same username
-                registErrText.setText(e.getMessage());
+                registErrText.setText("Username unaviliable");
                 registErrText.setStyle("-fx-text-fill: #FF0000;");
             }
         }
