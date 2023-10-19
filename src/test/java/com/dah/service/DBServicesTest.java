@@ -1,8 +1,7 @@
-package com.dah.services;
+package com.dah.service;
 
 import static org.junit.Assert.*;
 
-import java.sql.Statement;
 import java.sql.SQLException;
 
 import org.junit.Before;
@@ -72,34 +71,64 @@ public class DBServicesTest {
 
     }
 
+
     @Test
-    public void getStatementSucessTest() {
+    public void runUpdateQuerySucessInsertTest() {
         try {
             db_service.connectToDB();
+
+            String query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('asdf', 'asdf', 'asdf', 'asdf');";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed >= 1);
+
+            String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+            db_service.runUpdateQuery(delete_added_data);
+
         } catch (Exception e) {
-            // no test for this is needed
-        }
-
-        try {
-            Statement statement =  db_service.getStatement();
-
-            assertTrue(statement instanceof Statement);
-        } catch (SQLException e) {
-            fail("db not connected");
+            
+            fail(e.getMessage());
         }
     }
 
+    
     @Test
-    public void getStatementNoConnectionTest() {
-        
+    public void runUpdateQueryInsertDupePKTest() {
         try {
-            Statement statement =  db_service.getStatement();
+            db_service.connectToDB();
 
-            fail("should thrown an exception");
+            String query = "INSERT INTO User (username, password, first_name, last_name) VALUES ('qwer', 'asdf', 'asdf', 'asdf');";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed < 1);
+
+            // String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+            // db_service.runUpdateQuery(delete_added_data);
+
         } catch (Exception e) {
             assertTrue(true);
         }
+        
     }
 
+    
+    @Test
+    public void runUpdateQueryInsertIntoWrongTableTest() {
+        try {
+            db_service.connectToDB();
+
+            String query = "INSERT INTO Post (username, password, first_name, last_name) VALUES ('qwer', 'asdf', 'asdf', 'asdf');";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed < 1);
+
+            // String delete_added_data = "DELETE FROM User WHERE username = 'asdf';";
+            // db_service.runUpdateQuery(delete_added_data);
+
+        } catch (Exception e) {
+            
+            assertTrue(true);
+        }
+    }
 
 }

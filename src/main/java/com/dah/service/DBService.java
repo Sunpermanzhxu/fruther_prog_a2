@@ -1,4 +1,4 @@
-package com.dah.services;
+package com.dah.service;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -62,6 +62,48 @@ public class DBService {
     }
 
 
+    // /**
+    //  * make select query run in this file for better management
+    //  * @param query the SELECT query to be executed
+    //  * @return {@code resultSet} to be processed later in different services
+    //  * @throws SQLException if there is a db connection error
+    //  */
+    // public ResultSet runSelectQuery(String query) throws SQLException {
+    //     Statement statement = connection.createStatement();
+    //     System.out.println("in dbservices");
+    //     System.out.println(query);
+    //     ResultSet resultSet = statement.executeQuery(query);
+
+
+    //     while (resultSet.next()) {
+    //         String username = resultSet.getString("username");
+    //         System.out.println("db running");
+    //         System.out.println(username);
+    //     }
+
+    //     // statement.close();
+
+    //     return resultSet;
+    // }
+
+
+    /**
+     * make insert, update and delet query run in this file for better management
+     * @param query the query to be executed
+     * @return {@code row_change} as number of affected rows
+     * @throws SQLException if there is a db connection error
+     */
+    public int runUpdateQuery(String query) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        int row_change = statement.executeUpdate(query);
+
+        statement.close();
+
+        return row_change;
+    }
+
+
     /**
      * close the connection to the db file
      * @throws SQLException if a database access error occurs
@@ -78,6 +120,7 @@ public class DBService {
     }
 
 
+    // // no longer needed
     /**
      * provide statement for the other sevices that retrive data from database
      * @return {@code statement}

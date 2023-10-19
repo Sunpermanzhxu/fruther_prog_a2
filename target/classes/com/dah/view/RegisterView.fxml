@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10"
+      alignment="CENTER"
+      fx:controller="com.dah.controller.RegisterController">
+
+    <Label text="Login" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <TextField fx:id="usernameField" promptText="Username" />
+
+    <PasswordField fx:id="passwordField" promptText="Password" />
+    <PasswordField fx:id="confirmPassField" promptText="Confirm Password" />
+
+    <TextField fx:id="firstNameField" promptText="First Name" />
+    <TextField fx:id="lastNameField" promptText="Last Name" />
+
+    <Button fx:id="registerButton" text="Register" onAction="#handleRegister" />
+    <Button fx:id="loginButton" text="Have an account" onAction="#handleLogin" />
+
+    <Label fx:id="registErrText" text="" />
+
+</VBox>
