@@ -3,13 +3,7 @@ package com.dah.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -126,8 +120,7 @@ public class UserServiceTest {
         try {
             db_service.runUpdateQuery(reset_dele_query);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // no action needed
         }
 
      }
@@ -151,7 +144,6 @@ public class UserServiceTest {
         // try {
         //     db_service.runUpdateQuery(reset_dele_query);
         // } catch (SQLException e) {
-        //     // TODO Auto-generated catch block
         //     e.printStackTrace();
         // }
 
