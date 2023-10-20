@@ -165,6 +165,9 @@ public class UserService {
             throw new SQLException(err_message);
         } catch (IllegalArgumentException e) {
             throw e;
+        } catch (AssertionError e) {
+            String err_message = "Username unaviliable!";
+            throw new SQLException(err_message);
         }
     }
 
@@ -198,14 +201,17 @@ public class UserService {
 
             if (rows_changed < 1) {
                 // no data stored
-                String err_message = "Username unaviliable";
+                String err_message = "Username unaviliable!";
                 throw new IllegalArgumentException(err_message);
             }
         } catch (SQLException e) {
-            String err_message = "";
+            String err_message = "Error: Database connection error!!!";
             throw new SQLException(err_message);
         } catch (IllegalArgumentException e) {
             throw e;
+        } catch (AssertionError e) {
+            String err_message = "Username unaviliable!";
+            throw new SQLException(err_message);
         }
     }
 

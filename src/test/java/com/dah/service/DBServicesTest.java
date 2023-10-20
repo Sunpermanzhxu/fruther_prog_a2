@@ -1,3 +1,9 @@
+// ----------------------------------!!! Halt !!!---------------------------------------------
+// some of the tests will affext data integrety of db
+// those tests are commented out
+// only uncomment and use when there are errors in usage
+// -------------------------------------------------------------------------------------------
+
 package com.dah.service;
 
 import static org.junit.Assert.*;
@@ -129,6 +135,67 @@ public class DBServicesTest {
         } catch (Exception e) {
             
             assertTrue(true);
+        }
+    }
+
+
+    // // do not uncomment if no error in usage
+    // @Test
+    // public void runUpdateQueryUpdateTableSucessTest() {
+    //     try {
+    //         db_service.connectToDB();
+
+    //         String query = "UPDATE User SET username = 'asdf', password = 'asdf', first_name = 'asdf', last_name = 'asdf' WHERE username = 'qwer';";
+    //         int rows_changed = db_service.runUpdateQuery(query);
+            
+    //         assertTrue(rows_changed >= 1);
+
+    //         String reset_update_data = "UPDATE User SET username = 'qwer', password = 'qwer', first_name = 'qwer', last_name = 'qwer' WHERE username = 'asdf';";
+    //         db_service.runUpdateQuery(reset_update_data);
+
+    //     } catch (Exception e) {
+            
+    //         fail(e.getMessage());
+    //     }
+    // }
+
+    
+    // // do not uncomment if no error in usage
+    // @Test
+    // public void runUpdateQueryUpdateWithSameDataSuccessTest() {
+    //     try {
+    //         db_service.connectToDB();
+
+    //         String query = "UPDATE User SET username = 'qwer', password = 'asdf', first_name = 'asdf', last_name = 'asdf' WHERE username = 'qwer';";
+    //         int rows_changed = db_service.runUpdateQuery(query);
+            
+    //         assertTrue(rows_changed >= 1);
+
+    //         String reset_update_data = "UPDATE User SET username = 'qwer', password = 'qwer', first_name = 'qwer', last_name = 'qwer' WHERE username = 'qwer';";
+    //         db_service.runUpdateQuery(reset_update_data);
+
+    //     } catch (Exception e) {
+            
+    //         fail(e.getMessage());
+    //     }
+    // }
+
+    
+    @Test
+    public void runUpdateQueryUpdateValidPKConstrainTest() {
+        try {
+            db_service.connectToDB();
+
+            String query = "UPDATE User SET username = 'mocko', password = 'asdf', first_name = 'asdf', last_name = 'asdf' WHERE username = 'qwer';";
+            int rows_changed = db_service.runUpdateQuery(query);
+            
+            assertTrue(rows_changed < 1);
+
+            // String reset_update_data = "UPDATE User SET username = 'qwer', password = 'qwer', first_name = 'qwer', last_name = 'qwer' WHERE username = 'asdf';";
+            // db_service.runUpdateQuery(reset_update_data);
+
+        } catch (Exception e) {
+            assertTrue(e.getMessage(), true);;
         }
     }
 
