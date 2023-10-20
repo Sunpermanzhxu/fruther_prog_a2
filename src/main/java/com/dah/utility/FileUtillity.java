@@ -13,9 +13,9 @@ public class FileUtillity {
 
     // querries
 
-    public static final String SELECT_USER_PRE = "SELECT * FROM User";
+    public static final String SELECT_USER_PRE = "SELECT * FROM User ";
 
-    public static final String SELECT_POST_List_PRE = "SELECT po.ID, po.content, po.author, po.likes, po.shares, po.date_time FROM user_post_rela up JOIN User us ON up.username = us.username JOIN Post po ON up.ID = po.ID ";
+    public static final String SELECT_POST_List_PRE = "SELECT * FROM posts_for_users ";
 
 
     // the relation table will auto update username
