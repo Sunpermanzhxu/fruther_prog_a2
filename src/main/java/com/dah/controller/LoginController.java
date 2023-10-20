@@ -47,6 +47,7 @@ public class LoginController extends Controller {
             userService.retriveUserFromDB(username, password);
             loginErrText.setText("Login Sucessed");
             loginErrText.setStyle("-fx-text-fill: #000000;");
+            super.storeUser();
 
             super.switchAppState(DAH_STATE.DASHBOARD);
         } catch (Exception e) {

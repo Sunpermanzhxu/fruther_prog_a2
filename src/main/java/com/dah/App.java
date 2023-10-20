@@ -3,6 +3,7 @@ package com.dah;
 import java.io.IOException;
 
 import com.dah.controller.*;
+import com.dah.model.User;
 import com.dah.service.DBService;
 import com.dah.service.UserService;
 import com.dah.utility.GUIUtility;
@@ -25,6 +26,8 @@ public class App extends Application
     private static UserService userService;
     // TODO: add postService
 
+    private User stored_user;
+
     // private Controller controller;
     private DAH_STATE state;
 
@@ -36,6 +39,8 @@ public class App extends Application
         userService = new UserService(dbService);
         // TODO: add postService
 
+        stored_user = new User();
+
         try {
             dbService.connectToDB();
         } catch (Exception e) {
@@ -46,6 +51,10 @@ public class App extends Application
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public void saveUser(User user) {
+        stored_user = user;
     }
 
 
@@ -87,6 +96,7 @@ public class App extends Application
             // Get the controller instance from the loader
             Controller controller = loader.getController();
             controller.setApp(this);
+            controller.initiallize();
 
             this.primaryStage.show();
             

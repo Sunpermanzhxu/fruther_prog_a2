@@ -89,6 +89,7 @@ public class UserService {
                 throw new IllegalArgumentException(err_message);
             } else {
                 user = new User(username, password, first_name, last_name);
+                valid_user = true;
             }
 
             statement.close();
