@@ -39,8 +39,6 @@ public class App extends Application
         userService = new UserService(dbService);
         // TODO: add postService
 
-        stored_user = new User();
-
         try {
             dbService.connectToDB();
         } catch (Exception e) {
@@ -51,10 +49,6 @@ public class App extends Application
 
     public UserService getUserService() {
         return userService;
-    }
-
-    public void saveUser(User user) {
-        stored_user = user;
     }
 
 
@@ -105,11 +99,20 @@ public class App extends Application
         }
     }
 
+    public void saveUser(User user) {
+        stored_user = user;
+    }
+
+    public User getUser() {
+        return stored_user;
+    }
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         state = DAH_STATE.LOGIN;
+        
+        stored_user = new User();
 
         // from here the journey begains
         showPage();

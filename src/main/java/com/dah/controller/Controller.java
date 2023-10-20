@@ -31,11 +31,13 @@ public class Controller {
         UserService userService = app.getUserService();
         if (userService.getValidity()) {
             logged_user = userService.getUser();
+            app.saveUser(logged_user);
             System.out.println("++" + logged_user.getFullName() + "++");
         }
     }
 
     public String getFullName() {
+        logged_user = app.getUser();
         System.out.println("++" + logged_user.getFullName() + "++");
         return logged_user.getFullName();
     }

@@ -12,7 +12,7 @@
       alignment="CENTER"
       fx:controller="com.dah.controller.DashboardController">
 
-    <Label text="Welcome" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <Label text="Welcome" style="-fx-font-size: 30px; -fx-font-weight: bold;" />
     <Label fx:id="full_name" text="" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
 </VBox>
