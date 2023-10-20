@@ -10,6 +10,8 @@ public class Controller {
     
     private App app;
 
+    private User loadedUser;
+
     public Controller() {
     }
 
