@@ -37,8 +37,6 @@ public class UserService {
     private String compileSelectQuery(String username, String password) {
         String return_query = select_user_pre;
 
-        return_query += " ";
-
         return_query += "WHERE ";
 
         return_query += "username = ";
