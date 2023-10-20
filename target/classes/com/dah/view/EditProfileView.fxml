@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
@@ -14,29 +15,29 @@
 
     <Label text="Edit Profile" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-    <HBox>
+    <HBox spacing="10" alignment="CENTER">
         <Label text="Username: " />
         <TextField fx:id="newUsernameField" promptText="New Username" />
     </HBox>
-    <HBox>
+    <HBox spacing="10" alignment="CENTER">
         <Label text="Password: " />
         <PasswordField fx:id="newPasswordField" promptText="New Password" />
     </HBox>
-    <HBox>
+    <HBox spacing="10" alignment="CENTER">
         <Label text="Confirm Password: " />
         <PasswordField fx:id="confirmNewPasswordField" promptText="Confirm New Password" />
     </HBox>
-    <HBox>
+    <HBox spacing="10" alignment="CENTER">
         <Label text="First Name: " />
         <TextField fx:id="newFirstNameField" promptText="New First Name" />
     </HBox>
-    <HBox>
+    <HBox spacing="10" alignment="CENTER">
         <Label text="Last Name: " />
         <TextField fx:id="newLastNameField" promptText="New Last Name" />
     </HBox>
 
     
-    <HBox>
+    <HBox spacing="10" alignment="CENTER">
         <Button fx:id="cancleEditButton" text="Cancel" onAction="#handleCancel" />
         <Button fx:id="confirmEditButton" text="Confirm" onAction="#handleConfirm" />
     </HBox>

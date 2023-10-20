@@ -24,7 +24,6 @@ public class DashboardController extends Controller{
 
     private void setGreetingLable() {
         String name = getFullName();
-        System.out.println(name);
         full_name.setText(name);
     }
 

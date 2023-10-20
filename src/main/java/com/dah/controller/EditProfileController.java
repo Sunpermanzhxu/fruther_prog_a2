@@ -1,6 +1,9 @@
 package com.dah.controller;
 
+import java.sql.SQLException;
+
 import com.dah.model.User;
+import com.dah.service.UserService;
 import com.dah.utility.DAH_STATE;
 
 import javafx.fxml.FXML;
@@ -83,7 +86,17 @@ public class EditProfileController extends Controller{
             editErrText.setText("Need at leat one entry!");
             editErrText.setStyle("-fx-text-fill: #FF0000;");
         } else {
-            // TODO: updata functions
+            UserService userService = passUserService();
+            try {
+                userService.editProfile(new_username, new_password, new_f_name, new_l_rname, loaded_user);
+                editErrText.setText("Change sucessful, login again to see the changes!");
+                editErrText.setStyle("-fx-text-fill: #000000;");
+
+                // TODO: auto logout the user
+            } catch (IllegalArgumentException | SQLException e) {
+                editErrText.setText(e.getMessage());
+                editErrText.setStyle("-fx-text-fill: #FF0000;");
+            }
         }
 
     }

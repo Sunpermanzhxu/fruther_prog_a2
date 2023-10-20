@@ -198,7 +198,7 @@ public class UserService {
 
             if (rows_changed < 1) {
                 // no data stored
-                String err_message = "Invalid username or password";
+                String err_message = "Username unaviliable";
                 throw new IllegalArgumentException(err_message);
             }
         } catch (SQLException e) {
