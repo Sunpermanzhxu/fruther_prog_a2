@@ -3,8 +3,8 @@ package com.dah.utility;
 public enum DAH_STATE {
     LOGIN("LoginView.fxml"),
     REGISITER("RegisterView.fxml"),
-    DASHBOARD("DashboardView.fxml");                              // from this state forward the user is logged in
-    // EDIT_PROFILE,
+    DASHBOARD("DashboardView.fxml"),                              // from this state forward the user is logged in
+    EDIT_PROFILE("EditProfileView.fxml");
     // ADD_A_POST,
     // RETRIEVE_A_POST,
     // REMOVE_A_POST,

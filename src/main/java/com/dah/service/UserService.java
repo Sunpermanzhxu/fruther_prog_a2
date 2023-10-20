@@ -16,6 +16,7 @@ public class UserService {
 
     private String select_user_pre;
     private String insert_user_pre;
+    private String update_user_pre;
 
     public UserService(DBService db_service) {
         this.db_service = db_service;
@@ -25,6 +26,7 @@ public class UserService {
 
         select_user_pre = FileUtillity.SELECT_USER_PRE;
         insert_user_pre = FileUtillity.INSERT_USER_PRE;
+        update_user_pre = FileUtillity.UPDATE_USER_PRE;
     }
     
 
@@ -89,6 +91,7 @@ public class UserService {
                 throw new IllegalArgumentException(err_message);
             } else {
                 user = new User(username, password, first_name, last_name);
+                valid_user = true;
             }
 
             statement.close();
@@ -162,6 +165,9 @@ public class UserService {
             throw new SQLException(err_message);
         } catch (IllegalArgumentException e) {
             throw e;
+        } catch (AssertionError e) {
+            String err_message = "Username unaviliable!";
+            throw new SQLException(err_message);
         }
     }
 
@@ -171,7 +177,64 @@ public class UserService {
 
     }
 
-    // TODO: register and getInfo
+    // update part ---------------------------------------------------------
+
+    private String compileUpdateQuery(String new_username, String new_password, String new_f_name, String new_l_rname, User target_user) {
+        String return_string = update_user_pre;
+
+        return_string += "username = '" + new_username + "', ";
+        return_string += "password = '" + new_password + "', ";
+        return_string += "first_name = '" + new_f_name + "', ";
+        return_string += "last_name = '" + new_l_rname + "' ";
+
+        return_string += "WHERE username = '" + target_user.getUsername() + "';";
+
+        return return_string;
+    }
+
+    private void updateuUser(String new_username, String new_password, String new_f_name, String new_l_rname, User target_user) throws SQLException, IllegalArgumentException {
+        
+        try {
+            String query = compileUpdateQuery(new_username, new_password, new_f_name, new_l_rname, target_user);
+
+            int rows_changed = db_service.runUpdateQuery(query);
+
+            if (rows_changed < 1) {
+                // no data stored
+                String err_message = "Username unaviliable!";
+                throw new IllegalArgumentException(err_message);
+            }
+        } catch (SQLException e) {
+            String err_message = "Error: Database connection error!!!";
+            throw new SQLException(err_message);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        } catch (AssertionError e) {
+            String err_message = "Username unaviliable!";
+            throw new SQLException(err_message);
+        }
+    }
+
+    public void editProfile(String new_username, String new_password, String new_f_name, String new_l_rname, User target_user) throws IllegalArgumentException, SQLException {
+        // decide which to update
+        // default the new one
+
+        if (new_username.length() == 0) {
+            new_username = target_user.getUsername();
+        }
+        if (new_password.length() == 0) {
+            new_password = target_user.getPassword();
+        }
+        if (new_f_name.length() == 0) {
+            new_f_name = target_user.getFirstName();
+        }
+        if (new_l_rname.length() == 0) {
+            new_l_rname = target_user.getLastName();
+        }
+
+        updateuUser(new_username, new_password, new_f_name, new_l_rname, target_user);
+
+    }
 
 
 }

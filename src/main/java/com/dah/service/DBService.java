@@ -93,7 +93,7 @@ public class DBService {
      * @return {@code row_change} as number of affected rows
      * @throws SQLException if there is a db connection error
      */
-    public int runUpdateQuery(String query) throws SQLException {
+    public int runUpdateQuery(String query) throws SQLException, AssertionError {
         Statement statement = connection.createStatement();
 
         int row_change = statement.executeUpdate(query);
