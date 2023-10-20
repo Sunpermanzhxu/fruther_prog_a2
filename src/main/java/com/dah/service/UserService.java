@@ -101,15 +101,6 @@ public class UserService {
     }
 
 
-    public User getUser(){
-        return this.user;
-    }
-
-    public boolean getValidity() {
-        return valid_user;
-    }
-
-
     // area for registing ----------------------------------------------------
 
     /**
@@ -171,7 +162,11 @@ public class UserService {
 
     }
 
-    // TODO: register and getInfo
+    // TODO: getInfo
+
+    public String getUserFullName() {
+        return user.getFirstName() + " " + user.getLastName();
+    }
 
 
 }
