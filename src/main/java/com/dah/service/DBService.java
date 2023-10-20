@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.dah.utility.FileUtillity;
 
-public class DBService {
+public class DBService extends Service {
 
     private String db_path;
 

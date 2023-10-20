@@ -1,10 +1,14 @@
 package com.dah;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.dah.controller.*;
+import com.dah.model.User;
 import com.dah.service.DBService;
 import com.dah.service.PostService;
+import com.dah.service.Service;
 import com.dah.service.UserService;
 import com.dah.utility.GUIUtility;
 import com.dah.utility.DAH_STATE;
@@ -23,19 +27,29 @@ public class App extends Application
     private static int window_height;
 
     private static DBService dbService;
-    private static UserService userService;
-    private static PostService postService;
+    // private static UserService userService;
+    // private static PostService postService;
+    private static ArrayList<Service> services;
 
     // private Controller controller;
     private DAH_STATE state;
+
+    private static User logged_user;
+
+    // a bad way of passing user
 
     private static void initiallize() {
         window_width = GUIUtility.WINDOW_WIDTH;
         window_height = GUIUtility.WINDOW_HEIGHT;
 
         dbService = new DBService();
-        userService = new UserService(dbService);
-        postService = new PostService(dbService);
+        Service userService = new UserService(dbService);
+        Service postService = new PostService(dbService);
+        services = new ArrayList<Service>(2);
+        services.add(userService);
+        services.add(postService);
+
+        logged_user = new User();
 
         try {
             dbService.connectToDB();
@@ -45,14 +59,20 @@ public class App extends Application
 
     }
 
-    public UserService getUserService() {
-        return userService;
+    public ArrayList<Service> getServices() {
+        return services;
     }
 
-    public PostService getPostService() {
-        return postService;
+    public void setLoggedUser(User user) {
+        System.out.println("setLoggedUser?");
+        logged_user = user;
+        System.out.println(logged_user.getUserFullName());
     }
 
+    public User getLoggedUser() {
+        System.out.println("getLoggedUser?");
+        return logged_user;
+    }
 
     public static void main( String[] args )
     {
@@ -89,11 +109,12 @@ public class App extends Application
             // Load the FXML file and set it as the root of the scene
             this.primaryStage.setScene(new Scene(loader.load(), window_width, window_height));
 
+            this.primaryStage.show();
+            
             // Get the controller instance from the loader
             Controller controller = loader.getController();
             controller.setApp(this);
 
-            this.primaryStage.show();
             
         } catch (IOException  e) {
             System.out.println(e.getMessage());

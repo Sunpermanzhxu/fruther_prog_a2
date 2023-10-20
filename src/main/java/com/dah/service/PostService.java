@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.dah.model.Post;
 import com.dah.utility.FileUtillity;
 
-public class PostService {
+public class PostService extends Service {
 
     private DBService dbService;
     // private UserService userService;

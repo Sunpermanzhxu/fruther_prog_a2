@@ -13,9 +13,9 @@
       fx:controller="com.dah.controller.DashboardController">
 
     <Label text="Welcome" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-    <Label fx:id="nameText" style="-fx-font-size: 16px;"  />
+    <Label fx:id="nameText" text = "" style="-fx-font-size: 16px;"  />
 
-    <Button fx:id="editButton" text="Edit Profile" onAction="#handleEditProfile" />
+    <!-- <Button fx:id="editButton" text="Edit Profile" onAction="#handleEditProfile" /> -->
 
     <Label fx:id="dashboarErrText" text="" />
 

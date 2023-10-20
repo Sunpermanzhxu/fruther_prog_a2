@@ -40,6 +40,10 @@ public class User {
         return last_name;
     }
 
+    public String getUserFullName() {
+        return this.first_name + " " + this.last_name;
+    }
+
     // setters ----------------------------------
 
     public void setUsername(String username) {

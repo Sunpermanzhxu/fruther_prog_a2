@@ -16,12 +16,18 @@ public class Controller {
         this.app = app;
     }
 
+    public App appForUse() {
+        return app;
+    }
+
     public UserService passUserService() {
-        return app.getUserService();
+        UserService userService = (UserService) app.getServices().get(0);
+        return userService;
     }
 
     public PostService passsPostService() {
-        return app.getPostService();
+        PostService postService = (PostService) app.getServices().get(1);
+        return postService;
     }
 
     protected void switchAppState(DAH_STATE state) {

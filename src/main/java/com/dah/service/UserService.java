@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import com.dah.model.User;
 import com.dah.utility.FileUtillity;
 
-public class UserService {
+public class UserService extends Service {
 
     private DBService db_service;
 
     private User user;
-    private boolean valid_user;
+    // private boolean valid_user;
 
     private String select_user_pre;
     private String insert_user_pre;
@@ -21,7 +21,7 @@ public class UserService {
         this.db_service = db_service;
 
         this.user = new User();
-        this.valid_user = false;
+        // this.valid_user = false;
 
         select_user_pre = FileUtillity.SELECT_USER_PRE;
         insert_user_pre = FileUtillity.INSERT_USER_PRE;
@@ -89,6 +89,7 @@ public class UserService {
                 throw new IllegalArgumentException(err_message);
             } else {
                 user = new User(username, password, first_name, last_name);
+                
             }
 
             statement.close();
@@ -164,9 +165,12 @@ public class UserService {
 
     // TODO: getInfo
 
-    public String getUserFullName() {
-        return user.getFirstName() + " " + user.getLastName();
-    }
+    // public String getUserFullName() {
+    //     return user.getFirstName() + " " + user.getLastName();
+    // }
 
+    public User getUser() {
+        return user;
+    }
 
 }

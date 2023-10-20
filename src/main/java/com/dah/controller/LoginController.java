@@ -1,5 +1,6 @@
 package com.dah.controller;
 
+import com.dah.App;
 import com.dah.service.UserService;
 import com.dah.utility.DAH_STATE;
 
@@ -47,6 +48,9 @@ public class LoginController extends Controller {
             userService.retriveUserFromDB(username, password);
             loginErrText.setText("Login Sucessed");
             loginErrText.setStyle("-fx-text-fill: #000000;");
+            
+            App app = super.appForUse();
+            app.setLoggedUser(userService.getUser());
 
             super.switchAppState(DAH_STATE.DASHBOARD);
         } catch (Exception e) {
