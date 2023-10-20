@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.dah.controller.*;
 import com.dah.model.User;
 import com.dah.service.DBService;
+import com.dah.service.PostService;
 import com.dah.service.UserService;
 import com.dah.utility.GUIUtility;
 import com.dah.utility.DAH_STATE;
@@ -24,8 +25,10 @@ public class App extends Application
 
     private static DBService dbService;
     private static UserService userService;
-    // TODO: add postService
+    private static PostService postService;
 
+
+    // posts are not needed to store this way
     private User stored_user;
 
     // private Controller controller;
@@ -37,7 +40,7 @@ public class App extends Application
 
         dbService = new DBService();
         userService = new UserService(dbService);
-        // TODO: add postService
+        postService = new PostService(dbService);
 
         try {
             dbService.connectToDB();
@@ -54,7 +57,6 @@ public class App extends Application
 
     public static void main( String[] args )
     {
-        // TODO: generate DBService, UserService, PostService
         initiallize();
 
         launch(args);

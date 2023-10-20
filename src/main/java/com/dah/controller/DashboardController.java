@@ -1,27 +1,36 @@
 package com.dah.controller;
 
+import com.dah.utility.DAH_STATE;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class DashboardController extends Controller{
 
     @FXML
     private Label full_name;
 
+    @FXML
+    private Button editProfileButton;
+
     public DashboardController() {
     }
 
     @Override
     public void initiallize() {
-        // full_name.setText(getFullName());
         setGreetingLable();
     }
 
     private void setGreetingLable() {
-        System.out.println("qwer");
         String name = getFullName();
         System.out.println(name);
         full_name.setText(name);
+    }
+
+    @FXML
+    private void handleEditProfile() {
+        switchAppState(DAH_STATE.EDIT_PROFILE);
     }
     
 }

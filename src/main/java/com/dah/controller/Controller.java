@@ -15,6 +15,9 @@ public class Controller {
         logged_user = new User();
     }
 
+    /**
+     * to be used when needed to carry logged user
+     */
     public void initiallize() {
 
     }
@@ -40,6 +43,10 @@ public class Controller {
         logged_user = app.getUser();
         System.out.println("++" + logged_user.getFullName() + "++");
         return logged_user.getFullName();
+    }
+
+    public User passUser() {
+        return app.getUser();
     }
 
     protected void switchAppState(DAH_STATE state) {

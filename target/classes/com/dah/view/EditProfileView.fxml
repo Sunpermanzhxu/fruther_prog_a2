@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10"
+      alignment="CENTER"
+      fx:controller="com.dah.controller.EditProfileController">
+
+    <Label text="Edit Profile" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <HBox>
+        <Label text="Username: " />
+        <TextField fx:id="newUsernameField" promptText="New Username" />
+    </HBox>
+    <HBox>
+        <Label text="Password: " />
+        <PasswordField fx:id="newPasswordField" promptText="New Password" />
+    </HBox>
+    <HBox>
+        <Label text="Confirm Password: " />
+        <PasswordField fx:id="confirmNewPasswordField" promptText="Confirm New Password" />
+    </HBox>
+    <HBox>
+        <Label text="First Name: " />
+        <TextField fx:id="newFirstNameField" promptText="New First Name" />
+    </HBox>
+    <HBox>
+        <Label text="Last Name: " />
+        <TextField fx:id="newLastNameField" promptText="New Last Name" />
+    </HBox>
+
+    
+    <HBox>
+        <Button fx:id="cancleEditButton" text="Cancel" onAction="#handleCancel" />
+        <Button fx:id="confirmEditButton" text="Confirm" onAction="#handleConfirm" />
+    </HBox>
+    
+    <Label fx:id="editErrText" text="" />
+
+</VBox>

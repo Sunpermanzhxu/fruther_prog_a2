@@ -49,7 +49,7 @@ public class LoginController extends Controller {
             loginErrText.setStyle("-fx-text-fill: #000000;");
             super.storeUser();
 
-            super.switchAppState(DAH_STATE.DASHBOARD);
+            switchAppState(DAH_STATE.DASHBOARD);
         } catch (Exception e) {
             loginErrText.setText(e.getMessage());
             loginErrText.setStyle("-fx-text-fill: #FF0000;");
@@ -62,7 +62,7 @@ public class LoginController extends Controller {
      */
     @FXML
     private void handleRegister() {
-        super.switchAppState(DAH_STATE.REGISITER);
+        switchAppState(DAH_STATE.REGISITER);
     }
 
 }
