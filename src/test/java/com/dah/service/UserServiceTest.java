@@ -150,4 +150,73 @@ public class UserServiceTest {
 
     }
 
+    
+    // // do not uncomment if no error in usage
+    // @Test
+    // public void editProfileSucessTest() {
+    //     String target_username = "qwer";
+    //     String target_password = "1234qwer";
+    //     String target_first_name = "Amy";
+    //     String target_last_name = "Clar";
+    //     User target_user = new User(target_username, target_password, target_first_name, target_last_name);
+
+    //     String test_username = "asdf";
+    //     String test_password = "asdf";
+    //     String test_first_name = "adsf";
+    //     String test_last_name = "asdf";
+    //     User resultUser = new User(test_username, test_password, test_first_name, test_last_name);
+
+    //     try {
+    //         user_service.editProfile(test_username, test_password, test_first_name, test_last_name, target_user);
+    //         assertTrue(true);
+    //     } catch (IllegalArgumentException | SQLException e) {
+    //         fail(e.getMessage());
+    //     }
+
+    //     // String reset_dele_query = "DELETE FROM user WHERE username = 'asdf';";
+
+    //     // reset
+    //     try {
+    //         user_service.editProfile(target_username, target_password, target_first_name, target_last_name, resultUser);
+    //     } catch (SQLException e) {
+    //         // no action needed
+    //     }
+
+    // }
+
+    
+    // // do not uncomment if no error in usage
+    // @Test
+    // public void editProfilePartiallyTest() {
+    //     String target_username = "qwer";
+    //     String target_password = "1234qwer";
+    //     String target_first_name = "Amy";
+    //     String target_last_name = "Clar";
+    //     User target_user = new User(target_username, target_password, target_first_name, target_last_name);
+
+    //     String test_username = "";
+    //     String test_password = "asdf";
+    //     String test_first_name = "adsf";
+    //     String test_last_name = "asdf";
+    //     // notice "target_username" instead of test_username
+    //     User resultUser = new User(target_username, test_password, test_first_name, test_last_name);
+
+    //     try {
+    //         user_service.editProfile(test_username, test_password, test_first_name, test_last_name, target_user);
+    //         assertTrue(true);
+    //     } catch (IllegalArgumentException | SQLException e) {
+    //         fail(e.getMessage());
+    //     }
+
+    //     // String reset_dele_query = "DELETE FROM user WHERE username = 'asdf';";
+
+    //     // reset
+    //     try {
+    //         user_service.editProfile(target_username, target_password, target_first_name, target_last_name, resultUser);
+    //     } catch (SQLException e) {
+    //         // no action needed
+    //     }
+
+    // }
+
 }

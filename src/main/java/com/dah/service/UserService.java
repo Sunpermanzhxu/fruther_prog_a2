@@ -180,9 +180,9 @@ public class UserService {
         String return_string = update_user_pre;
 
         return_string += "username = '" + new_username + "', ";
-        return_string += "password = '" + new_username + "', ";
-        return_string += "first_name = '" + new_username + "', ";
-        return_string += "last_name = '" + new_username + "' ";
+        return_string += "password = '" + new_password + "', ";
+        return_string += "first_name = '" + new_f_name + "', ";
+        return_string += "last_name = '" + new_l_rname + "' ";
 
         return_string += "WHERE username = '" + target_user.getUsername() + "';";
 
