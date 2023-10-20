@@ -24,14 +24,13 @@ public class DashboardController extends Controller {
 
     public void initialize() {
         user_full_name = getUserFullName();
-        nameText.setText(user_full_name);
+        nameText.setText("user_full_name");
         nameText.setStyle("-fx-text-fill: #000000;");
     }
 
     private String getUserFullName() {
-        App app = super.appForUse();
         System.out.println("here");
-        User logged_user = app.getLoggedUser();
+        User logged_user = super.getLoggedUser();
         
         return logged_user.getUserFullName();
     }

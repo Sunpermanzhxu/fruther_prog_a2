@@ -1,6 +1,7 @@
 package com.dah.controller;
 
 import com.dah.App;
+import com.dah.model.User;
 import com.dah.service.PostService;
 import com.dah.service.UserService;
 import com.dah.utility.DAH_STATE;
@@ -19,6 +20,12 @@ public class Controller {
     public App appForUse() {
         return app;
     }
+
+    public User getLoggedUser() {
+        System.out.println("parent class?");
+        return app.getLoggedUser();
+    }
+
 
     public UserService passUserService() {
         UserService userService = (UserService) app.getServices().get(0);
