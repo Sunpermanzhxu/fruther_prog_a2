@@ -4,9 +4,9 @@ public enum DAH_STATE {
     LOGIN("LoginView.fxml"),
     REGISITER("RegisterView.fxml"),
     DASHBOARD("DashboardView.fxml"),                              // from this state forward the user is logged in
-    EDIT_PROFILE("EditProfileView.fxml");
-    // ADD_A_POST,
-    // RETRIEVE_A_POST,
+    EDIT_PROFILE("EditProfileView.fxml"),
+    ADD_A_POST("AddAPostView.fxml"),
+    RETRIEVE_A_POST("RetrivePostView.fxml");
     // REMOVE_A_POST,
     // TOP_N_LIKES,
     // TOP_N_SHARES,

@@ -61,6 +61,11 @@ public class Post {
 
         Date temp_date = new Date();
         try {
+            if (str_date.length() < 15) {
+                String err_message = "Error: date format not correct!!!";
+                int err_position = 0;
+                throw new ParseException(err_message, err_position);
+            }
             temp_date = date_format.parse(str_date);
         } catch (ParseException e) {
             String err_message = "Error: date format not correct!!!";

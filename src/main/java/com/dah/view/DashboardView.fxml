@@ -16,5 +16,7 @@
     <Label fx:id="full_name" text="" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
     
     <Button fx:id="editProfileButton" text="Edit Profile" onAction="#handleEditProfile" />
+    
+    <Button fx:id="addAPostButton" text="Add a Post" onAction="#handleaddAPost" />
 
 </VBox>

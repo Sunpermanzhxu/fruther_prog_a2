@@ -161,7 +161,7 @@ public class UserService {
                 throw new IllegalArgumentException(err_message);
             }
         } catch (SQLException e) {
-            String err_message = "";
+            String err_message = "Error: Database connection error!!!";
             throw new SQLException(err_message);
         } catch (IllegalArgumentException e) {
             throw e;

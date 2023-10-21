@@ -13,6 +13,8 @@ public class DashboardController extends Controller{
 
     @FXML
     private Button editProfileButton;
+    @FXML
+    private Button addAPostButton;
 
     public DashboardController() {
     }
@@ -30,6 +32,11 @@ public class DashboardController extends Controller{
     @FXML
     private void handleEditProfile() {
         switchAppState(DAH_STATE.EDIT_PROFILE);
+    }
+
+    @FXML
+    private void handleaddAPost() {
+        switchAppState(DAH_STATE.ADD_A_POST);
     }
     
 }
