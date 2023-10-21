@@ -16,5 +16,18 @@
     <Label fx:id="full_name" text="" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
     
     <Button fx:id="editProfileButton" text="Edit Profile" onAction="#handleEditProfile" />
+    
+    <Button fx:id="addAPostButton" text="Add a Post" onAction="#handleAddAPost" />
+
+    <Button fx:id="retriveAPostButton" text="Retrive a Post" onAction="#handleRetriveAPost" />
+
+    <Button fx:id="deleteAPostButton" text="Delete a Post" onAction="#handleDeleteAPost" />
+    
+    <Button fx:id="topNLikesButton" text="Retrive Posts with top N likes" onAction="#handleTopNLikesPost" />
+
+
+    
+    <Label text="" />
+    <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout" />
 
 </VBox>

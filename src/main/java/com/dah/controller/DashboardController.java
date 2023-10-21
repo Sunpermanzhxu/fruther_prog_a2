@@ -13,12 +13,25 @@ public class DashboardController extends Controller{
 
     @FXML
     private Button editProfileButton;
+    @FXML
+    private Button addAPostButton;
+    @FXML
+    private Button retriveAPostButton;
+    @FXML
+    private Button deleteAPostButton;
+    @FXML
+    private Button topNLikesButton;
+
+
+    
+    @FXML
+    private Button logoutButton;
 
     public DashboardController() {
     }
 
     @Override
-    public void initiallize() {
+    public void initiallise() {
         setGreetingLable();
     }
 
@@ -30,6 +43,34 @@ public class DashboardController extends Controller{
     @FXML
     private void handleEditProfile() {
         switchAppState(DAH_STATE.EDIT_PROFILE);
+    }
+
+    @FXML
+    private void handleAddAPost() {
+        switchAppState(DAH_STATE.ADD_A_POST);
+    }
+
+    @FXML
+    private void handleRetriveAPost() {
+        switchAppState(DAH_STATE.RETRIEVE_A_POST);
+    }
+
+    @FXML
+    private void handleDeleteAPost() {
+        switchAppState(DAH_STATE.REMOVE_A_POST);
+    }
+
+    @FXML
+    private void handleTopNLikesPost() {
+        switchAppState(DAH_STATE.TOP_N_LIKES);
+    }
+
+
+
+    
+    @FXML
+    private void handleLogout() {
+        switchAppState(DAH_STATE.LOGIN);
     }
     
 }

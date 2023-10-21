@@ -39,19 +39,23 @@ public class App extends Application
         window_height = GUIUtility.WINDOW_HEIGHT;
 
         dbService = new DBService();
-        userService = new UserService(dbService);
-        postService = new PostService(dbService);
-
         try {
             dbService.connectToDB();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        userService = new UserService(dbService);
+        postService = new PostService(dbService);
+
 
     }
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public PostService getPostService() {
+        return postService;
     }
 
 
@@ -92,7 +96,7 @@ public class App extends Application
             // Get the controller instance from the loader
             Controller controller = loader.getController();
             controller.setApp(this);
-            controller.initiallize();
+            controller.initiallise();
 
             this.primaryStage.show();
             

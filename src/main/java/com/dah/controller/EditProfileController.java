@@ -40,7 +40,7 @@ public class EditProfileController extends Controller{
     }
 
     @Override
-    public void initiallize() {
+    public void initiallise() {
         loaded_user = passUser();
     }
 
@@ -49,6 +49,12 @@ public class EditProfileController extends Controller{
         switchAppState(DAH_STATE.DASHBOARD);
     }
 
+    /**
+     * check if new_password matches new_c_password
+     * @param new_password
+     * @param new_c_password
+     * @return {@code true | false}
+     */
     private Boolean checkPassConfirm(String new_password, String new_c_password) {
         return new_password.equals(new_c_password);
     }

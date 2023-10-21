@@ -2,6 +2,7 @@ package com.dah.controller;
 
 import com.dah.App;
 import com.dah.model.User;
+import com.dah.service.PostService;
 import com.dah.service.UserService;
 import com.dah.utility.DAH_STATE;
 
@@ -18,7 +19,7 @@ public class Controller {
     /**
      * to be used when needed to carry logged user
      */
-    public void initiallize() {
+    public void initiallise() {
 
     }
 
@@ -28,6 +29,10 @@ public class Controller {
 
     public UserService passUserService() {
         return app.getUserService();
+    }
+
+    public PostService passPostService() {
+        return app.getPostService();
     }
 
     public void storeUser() {
