@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10"
+      alignment="CENTER"
+      fx:controller="com.dah.controller.RetrivePostController">
+
+    <Label text="Retrive a Post" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="ID: " />
+        <TextField fx:id="idField" promptText="Positive integer" />
+    </HBox>
+
+    <TableView fx:id="resultTable">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+            <TableColumn fx:id="contentColumn" text="content" prefWidth="250" />
+            <TableColumn fx:id="authorColumn" text="author" prefWidth="100" />
+            <TableColumn fx:id="likesColumn" text="likes" prefWidth="50" />
+            <TableColumn fx:id="sharesColumn" text="shares" prefWidth="50"/>
+            <TableColumn fx:id="date_timeColumn" text="date_time" prefWidth="100"/>
+        </columns>
+    </TableView>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="cancleRetirveButton" text="Cancel" onAction="#handleCancel" />
+        <Button fx:id="confirmRetirveButton" text="Confirm" onAction="#handleConfirm" />
+    </HBox>
+    
+    <Label fx:id="retriveErrText" text="" />
+
+</VBox>

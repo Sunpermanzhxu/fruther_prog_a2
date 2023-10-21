@@ -96,7 +96,7 @@ public class App extends Application
             // Get the controller instance from the loader
             Controller controller = loader.getController();
             controller.setApp(this);
-            controller.initiallize();
+            controller.initiallise();
 
             this.primaryStage.show();
             

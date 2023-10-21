@@ -40,7 +40,7 @@ public class EditProfileController extends Controller{
     }
 
     @Override
-    public void initiallize() {
+    public void initiallise() {
         loaded_user = passUser();
     }
 

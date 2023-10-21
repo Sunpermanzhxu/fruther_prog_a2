@@ -6,12 +6,10 @@ import java.text.ParseException;
 import com.dah.model.Post;
 import com.dah.model.User;
 import com.dah.service.PostService;
-import com.dah.service.UserService;
 import com.dah.utility.DAH_STATE;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -57,7 +55,7 @@ public class AddAPostController extends Controller {
     }
 
     @Override 
-    public void initiallize() {
+    public void initiallise() {
         loaded_user = passUser();
     }
 

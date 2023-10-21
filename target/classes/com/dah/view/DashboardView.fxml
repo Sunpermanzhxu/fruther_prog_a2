@@ -17,6 +17,8 @@
     
     <Button fx:id="editProfileButton" text="Edit Profile" onAction="#handleEditProfile" />
     
-    <Button fx:id="addAPostButton" text="Add a Post" onAction="#handleaddAPost" />
+    <Button fx:id="addAPostButton" text="Add a Post" onAction="#handleAddAPost" />
+
+    <Button fx:id="retriveAPostButton" text="Retrive a Post" onAction="#handleRetriveAPost" />
 
 </VBox>

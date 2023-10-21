@@ -13,7 +13,7 @@
       alignment="CENTER"
       fx:controller="com.dah.controller.AddAPostController">
 
-    <Label text="Edit Profile" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <Label text="Add a Post" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
     <HBox spacing="10" alignment="CENTER">
         <Label text="ID: " />

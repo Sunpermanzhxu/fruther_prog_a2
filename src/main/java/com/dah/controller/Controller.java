@@ -19,7 +19,7 @@ public class Controller {
     /**
      * to be used when needed to carry logged user
      */
-    public void initiallize() {
+    public void initiallise() {
 
     }
 

@@ -14,7 +14,8 @@ public class Post {
     private String author;
     private int likes;
     private int shares;
-    private Date date_time;
+    private String date_time;
+    private Date date_date_time;
 
     
     private SimpleDateFormat date_format;
@@ -49,8 +50,8 @@ public class Post {
             throw new IllegalArgumentException(err_message);
         }
 
-        String str_date = date_time;
-        this.date_time = parseDate(str_date);
+        this.date_time = date_time;
+        this.date_date_time = parseDate(date_time);
 
     }
 
@@ -102,7 +103,7 @@ public class Post {
     }
 
     public String getDateTime() {
-        return strDateTime();
+        return date_time;
     }
 
     public SimpleIntegerProperty idProperty() {
@@ -129,7 +130,7 @@ public class Post {
         return SIP_likes;
     }
 
-    public SimpleIntegerProperty sharessProperty() {
+    public SimpleIntegerProperty sharesProperty() {
         SimpleIntegerProperty  SIP_shares = new SimpleIntegerProperty();
         SIP_shares.set(shares);
         return SIP_shares;
