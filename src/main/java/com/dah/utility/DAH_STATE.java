@@ -6,8 +6,8 @@ public enum DAH_STATE {
     DASHBOARD("DashboardView.fxml"),                              // from this state forward the user is logged in
     EDIT_PROFILE("EditProfileView.fxml"),
     ADD_A_POST("AddAPostView.fxml"),
-    RETRIEVE_A_POST("RetrivePostView.fxml");
-    // REMOVE_A_POST,
+    RETRIEVE_A_POST("RetrivePostView.fxml"),
+    REMOVE_A_POST("RemovePostView.fxml");
     // TOP_N_LIKES,
     // TOP_N_SHARES,
     // SAVE_POST,

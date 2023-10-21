@@ -19,6 +19,7 @@ public class PostService {
 
     private String add_post_pre;
     private String select_post_list_pre;
+    private String delete_post_pre;
 
     private String insert_rela_pre;
 
@@ -30,6 +31,7 @@ public class PostService {
 
         add_post_pre = FileUtillity.INSERT_POST_PRE;
         select_post_list_pre = FileUtillity.SELECT_POST_List_PRE;
+        delete_post_pre = FileUtillity.DELETE_POST_PRE;
 
         insert_rela_pre = FileUtillity.INSERT_RELA_PRE;
     }
@@ -151,6 +153,54 @@ public class PostService {
         }
         
     }
+
+    // remove ---------------------------------------
+
+    private String compileRemoveQuery(String id, User user) {
+        String return_query = delete_post_pre;
+
+        return_query += "WHERE ";
+
+        return_query += "ID = ";
+        return_query += "" + id + " ";
+        
+        return_query += "AND EXISTS (";
+
+        return_query += "SELECT username FROM user_post_rela WHERE ";
+
+        return_query += "username = ";
+        return_query += "'" + user.getUsername() + "'";
+
+        return_query += ")";
+
+        return_query += ";";
+
+        return return_query;
+    }
+
+
+    public void removePost(String id, User user) throws SQLException, IllegalArgumentException, AssertionError {
+        try {
+            String query = compileRemoveQuery(id, user);
+            int rows_changed = dbService.runUpdateQuery(query);
+
+            if (rows_changed < 1) {
+                // no data stored
+                String err_message = "Invalid ID";
+                throw new IllegalArgumentException(err_message);
+            }
+        } catch (SQLException e) {
+            String err_message = "Error: Database connection error!!!";
+            throw new SQLException(err_message);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        } catch (AssertionError e) {
+            String err_message = "ID unaviliable!";
+            throw new SQLException(err_message);
+        }
+
+    }
+
     //TODO: the post actions.
     
 }

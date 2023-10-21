@@ -21,4 +21,6 @@
 
     <Button fx:id="retriveAPostButton" text="Retrive a Post" onAction="#handleRetriveAPost" />
 
+    <Button fx:id="deleteAPostButton" text="Delete a Post" onAction="#handleDeleteAPost" />
+
 </VBox>

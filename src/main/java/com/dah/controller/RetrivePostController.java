@@ -87,7 +87,7 @@ public class RetrivePostController extends Controller {
         ObservableList<Post> tableData = FXCollections.observableArrayList();
         
         for (Post post : posts) {
-            System.out.println(post.getDateTime());
+            // System.out.println(post.getDateTime());
             tableData.add(post);
             // dataTable.getItems().addAll(post);
         }
