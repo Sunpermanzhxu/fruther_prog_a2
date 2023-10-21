@@ -22,6 +22,8 @@
     <Button fx:id="retriveAPostButton" text="Retrive a Post" onAction="#handleRetriveAPost" />
 
     <Button fx:id="deleteAPostButton" text="Delete a Post" onAction="#handleDeleteAPost" />
+    
+    <Button fx:id="topNLikesButton" text="Retrive Posts with top N likes" onAction="#handleTopNLikesPost" />
 
 
     

@@ -201,6 +201,63 @@ public class PostService {
 
     }
 
+
+    // top n likes ---------------------------------------------------
+
+    private String compileTopNLikesQuery(String num, User user) {
+        String return_query = select_post_list_pre;
+
+        return_query += "WHERE ";
+
+        return_query += "username = ";
+        return_query += "'" + user.getUsername() + "' ";
+
+        return_query += "ORDER BY likes DESC ";
+
+        return_query += "LIMIT " + num;
+
+        return_query += ";";
+
+        return return_query;
+    }
+
+    public void retriveTopLikesPost(String num, User user) throws SQLException, IllegalArgumentException, ParseException {
+        try {
+            String query = compileTopNLikesQuery(num, user);
+
+            Statement statement = dbService.getStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            posts.clear();
+            
+            int result_count = 0;
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String content = resultSet.getString("content");
+                String author = resultSet.getString("author");
+                int likes = resultSet.getInt("likes");
+                int shares = resultSet.getInt("shares");
+                String date_time = resultSet.getString("date_time");
+
+                Post recived_post = new Post(id, content, author, likes, shares, date_time);
+                posts.add(recived_post);
+                result_count += 1;
+            }
+
+            if (result_count < 1) {
+                // no data got
+                String err_message = "Invalid id";
+                throw new IllegalArgumentException(err_message);
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            String err_message = "Error: Database connection error!!!";
+            throw new SQLException(err_message);
+        }
+    }
+
     //TODO: the post actions.
     
 }

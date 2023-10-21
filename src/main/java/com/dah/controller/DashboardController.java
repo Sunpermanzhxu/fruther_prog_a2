@@ -19,6 +19,8 @@ public class DashboardController extends Controller{
     private Button retriveAPostButton;
     @FXML
     private Button deleteAPostButton;
+    @FXML
+    private Button topNLikesButton;
 
 
     
@@ -56,6 +58,11 @@ public class DashboardController extends Controller{
     @FXML
     private void handleDeleteAPost() {
         switchAppState(DAH_STATE.REMOVE_A_POST);
+    }
+
+    @FXML
+    private void handleTopNLikesPost() {
+        switchAppState(DAH_STATE.TOP_N_LIKES);
     }
 
 

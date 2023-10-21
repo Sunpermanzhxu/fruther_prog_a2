@@ -7,8 +7,8 @@ public enum DAH_STATE {
     EDIT_PROFILE("EditProfileView.fxml"),
     ADD_A_POST("AddAPostView.fxml"),
     RETRIEVE_A_POST("RetrivePostView.fxml"),
-    REMOVE_A_POST("RemovePostView.fxml");
-    // TOP_N_LIKES,
+    REMOVE_A_POST("RemovePostView.fxml"),
+    TOP_N_LIKES("TopNLikes.fxml");
     // SAVE_POST,
     // LOGOUT("LogoutView.fxml");                                           // not actually a state
 

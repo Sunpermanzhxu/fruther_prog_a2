@@ -1,8 +1,6 @@
 package com.dah.controller;
 
 import java.sql.SQLException;
-import java.text.ParseException;
-
 import com.dah.model.User;
 import com.dah.service.PostService;
 import com.dah.utility.DAH_STATE;
