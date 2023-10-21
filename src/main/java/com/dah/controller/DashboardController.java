@@ -20,6 +20,11 @@ public class DashboardController extends Controller{
     @FXML
     private Button deleteAPostButton;
 
+
+    
+    @FXML
+    private Button logoutButton;
+
     public DashboardController() {
     }
 
@@ -51,6 +56,14 @@ public class DashboardController extends Controller{
     @FXML
     private void handleDeleteAPost() {
         switchAppState(DAH_STATE.REMOVE_A_POST);
+    }
+
+
+
+    
+    @FXML
+    private void handleLogout() {
+        switchAppState(DAH_STATE.LOGIN);
     }
     
 }

@@ -23,4 +23,9 @@
 
     <Button fx:id="deleteAPostButton" text="Delete a Post" onAction="#handleDeleteAPost" />
 
+
+    
+    <Label text="" />
+    <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout" />
+
 </VBox>

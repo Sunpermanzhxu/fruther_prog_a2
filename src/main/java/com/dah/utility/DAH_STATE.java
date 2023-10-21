@@ -9,9 +9,8 @@ public enum DAH_STATE {
     RETRIEVE_A_POST("RetrivePostView.fxml"),
     REMOVE_A_POST("RemovePostView.fxml");
     // TOP_N_LIKES,
-    // TOP_N_SHARES,
     // SAVE_POST,
-    // LOG_OUT;
+    // LOGOUT("LogoutView.fxml");                                           // not actually a state
 
     
     private final String FILE_NAME;
